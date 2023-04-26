@@ -1,10 +1,13 @@
+import { Routes, Route } from "react-router-dom";
 import ProdsPrices from "./Components/ProdsPrices";
+import Index from "./pages/Index";
 
 function App() {
   return (
-    <div>
-      <ProdsPrices />
-    </div>
+    <Routes>
+      <Route path="/" element={<Index/>} />
+      <Route path="/products" element={<ProdsPrices/>} />
+    </Routes>
   );
 }
 

@@ -1,14 +1,16 @@
 import React from 'react'
+import "../pages/indexStyles.css"
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div className='nav-container'>
+    <header className='nav-container'>
         <nav className='nav'>
-            <a href="">Logo</a>
-            <a href="">About us</a>
-            <a href="">Contacto</a>
+            <Link href="">Logo</Link>
+            <Link href="">About us</Link>
+            <Link href="">Contacto</Link>
         </nav>
-    </div>
+    </header>
   )
 }
 

@@ -6,7 +6,7 @@ const Product = ({ img, name, click}) => {
     <div className="cont-pro" onClick={click}>
         <div className="contenido">
         <img src={img} alt="" />
-        <h4>{name} </h4>
+        <h5>{name} </h5>
         </div>
     </div>
   );

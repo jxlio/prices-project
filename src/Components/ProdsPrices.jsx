@@ -157,13 +157,10 @@ const ProdsPrices = () => {
   }
 
   const filtro = (busqueda) => {
-    var result = producto.filter((produ) => {
-      if (
-        produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
-      ) {
-        return produ;
-      }
-    });
+    //producto.filter(produ =>  produ.name.toString().toLowerCase().includes(busqueda.toLowerCase()) ? return produ : setProducto )
+    var result = producto.filter((produ) =>
+      produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
+    );
     setProducto(result);
   };
 

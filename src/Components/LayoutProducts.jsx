@@ -1,30 +1,28 @@
 import React from "react";
-import { useState } from "react";
-import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
-const LayoutProducts = ({ children, change, state}) => {
-    
+const LayoutProducts = ({ children, change, state }) => {
   return (
-    
     <>
-   
-   <section className="lay-cont">
     
-    <header className="top-sec">
-        <h1>PRODUCTOS</h1>
-        <div className="search-container">
-        <i  className="fa-solid fa-magnifying-glass search"></i> 
-        <input  type="search" placeholder="Buscar" onChange={change} value={state}/>
+      <section className="lay-cont">
+      <Link to={"/"}> <i class="fa-solid fa-house back"></i> </Link> 
+        <header className="top-sec">
+          <h1>PRODUCTOS</h1>
+          <div className="search-container">
+            <i className="fa-solid fa-magnifying-glass search"></i>
+            <input
+              type="search"
+              placeholder="Buscar"
+              onChange={change}
+              value={state}
+            />
+          </div>
+        </header>
 
-        </div>
-    </header>
-      
-    <section className="products-container">
-        {children}
-    </section>
-      
-   </section>
-   </>
+        <section className="products-container">{children}</section>
+      </section>
+    </>
   );
 };
 
