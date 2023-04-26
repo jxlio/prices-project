@@ -11,13 +11,13 @@
   scroll-behavior: smooth;
   background-color:  #f6f6f6;
   margin: 0px;
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 .back {
   margin-left: 10px;
-  margin-top: 10px;
-  font-size: 17px;
+  margin-top: 8px;
+  font-size: 14px;
   color: white;
   background-color: #0e0e10;
   padding: 10px 20px;

@@ -6,15 +6,6 @@ import "../App.css";
 
 const products = [
   {
-    id: 1,
-    name: "Coca Cola",
-    price: 4400,
-    img: "https://static.merqueo.com/images/products/large/6206481c-0642-449e-894b-acfda98045a4.png",
-    precioD1: 3000,
-    precioAra: 2000,
-    cantidad: 19,
-  },
-  {
     id: 2,
     name: "Arroz Blanco Diana",
     price: 8900,
