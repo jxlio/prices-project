@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Product = ({ img, name, price, click}) => {
+const Product = ({ img, name, click}) => {
   return (
     <div className="cont-pro" onClick={click}>
         <div className="contenido">

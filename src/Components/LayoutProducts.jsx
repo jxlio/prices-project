@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import Navbar from "./Navbar";
 
 const LayoutProducts = ({ children, change, state}) => {
     
   return (
     
+    <>
+   
    <section className="lay-cont">
     
     <header className="top-sec">
@@ -15,12 +18,13 @@ const LayoutProducts = ({ children, change, state}) => {
 
         </div>
     </header>
-
+      
     <section className="products-container">
         {children}
     </section>
-
+      
    </section>
+   </>
   );
 };
 
