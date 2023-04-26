@@ -1,5 +1,5 @@
 import React from "react";
-import Product from "../Components/Product"
+import Product from "../Components/Product";
 import LayoutProducts from "../Components/LayoutProducts";
 import { useState } from "react";
 import "../App.css";
@@ -168,42 +168,35 @@ const ProdsPrices = () => {
   };
 
   return (
-
-      <>
-        <div className="dad">
-          <LayoutProducts change={handleChange} value={resultado}>
-            {producto.length === 0 && "Este producto aun no esta disponible"}
-            {map}
-          </LayoutProducts>
-          {info && <InfoPage selectedProduct={selectedProduct} />}
-        </div>
-      </>
-
+    <>
+      <div className="dad">
+        <LayoutProducts change={handleChange} value={resultado}>
+          {producto.length === 0 && "Este producto aun no esta disponible"}
+          {map}
+        </LayoutProducts>
+        {info && <InfoPage selectedProduct={selectedProduct} />}
+      </div>
+    </>
   );
 };
 
-
 const InfoPage = ({ selectedProduct }) => {
-    if (!selectedProduct) {
-      return null;
-    }
-  
-    return (
-      <div className="info">
-        <div className="main-info">
-          <h2>{selectedProduct.name}</h2>
-          <div className="price-info">{`$${selectedProduct.price}`}</div>
-          <img src={selectedProduct.img} alt="" />
-          <span>{` Precio D1:  ${selectedProduct.precioD1}`} </span>
-          <span>{` Precio Ara:  ${selectedProduct.precioAra}`} </span>
-          <span>{` Cantidad:  ${selectedProduct.cantidad}`} </span>
-        </div>
-      </div>
-    );
-  };
-  
+  if (!selectedProduct) {
+    return null;
+  }
 
+  return (
+    <div className="info">
+      <div className="main-info">
+        <h2>{selectedProduct.name}</h2>
+        <div className="price-info">{`$${selectedProduct.price}`}</div>
+        <img src={selectedProduct.img} alt="" />
+        <span>{` Precio D1:  ${selectedProduct.precioD1}`} </span>
+        <span>{` Precio Ara:  ${selectedProduct.precioAra}`} </span>
+        <span>{` Cantidad:  ${selectedProduct.cantidad}`} </span>
+      </div>
+    </div>
+  );
+};
 
 export default ProdsPrices;
-
-
