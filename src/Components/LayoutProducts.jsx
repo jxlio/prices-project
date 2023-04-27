@@ -6,7 +6,10 @@ const LayoutProducts = ({ children, change, state }) => {
     <>
     
       <section className="lay-cont">
-      <Link to={"/"}> <i class="fa-solid fa-house back"></i> </Link> 
+        <div>
+        <Link to={"/"}>  <i class="fa-solid fa-house back"></i> </Link> 
+        </div>
+      
         <header className="top-sec">
           <h1>PRODUCTOS</h1>
           <div className="search-container">

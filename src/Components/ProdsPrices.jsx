@@ -162,7 +162,7 @@ const ProdsPrices = () => {
           {producto.length === 0 && "Este producto aun no esta disponible"}
           {map}
         </LayoutProducts>
-        {info && <InfoPage selectedProduct={selectedProduct} />}
+        {info ? <InfoPage selectedProduct={selectedProduct} /> : "XD"  }
       </div>
     </>
   );
@@ -172,7 +172,6 @@ const InfoPage = ({ selectedProduct }) => {
   if (!selectedProduct) {
     return null;
   }
-
   return (
     <div className="info">
       <div className="main-info">
