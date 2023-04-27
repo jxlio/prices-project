@@ -6,9 +6,12 @@ const Navbar = () => {
   return (
     <header className='nav-container'>
         <nav className='nav'>
-            <Link href="">Logo</Link>
-            <Link href="">About us</Link>
+          <div className='logo'>
+          <Link href="" >Logo</Link>
+          </div>
+            <Link href="">Sobre nosotros</Link>
             <Link href="">Contacto</Link>
+            
         </nav>
     </header>
   )
