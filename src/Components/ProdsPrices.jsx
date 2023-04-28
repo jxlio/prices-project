@@ -3,6 +3,7 @@ import Product from "../Components/Product";
 import LayoutProducts from "../Components/LayoutProducts";
 import { useState } from "react";
 import "../App.css";
+import NoProductSelected from "./NoProductSelected";
 
 const products = [
   {
@@ -116,6 +117,7 @@ const ProdsPrices = () => {
   const [selectedProduct, setSelectedProduct] = useState();
   const [resultado, setResultado] = useState("");
   const [producto, setProducto] = useState(products);
+  const [isSelected, setIsSelected] = useState(false);
 
   const show = (prod) => {
     setInfo(true);
@@ -123,6 +125,18 @@ const ProdsPrices = () => {
   };
 
   const map = producto.map((prod) => {
+    if (prod == selectedProduct) {
+      return (
+        <Product
+          isSelected={isSelected}
+          name={prod.name}
+          price={prod.price}
+          img={prod.img}
+          key={prod.id}
+          click={() => show(prod)}
+        />
+      );
+    }
     return (
       <Product
         name={prod.name}
@@ -136,6 +150,7 @@ const ProdsPrices = () => {
 
   function selectProd(prod) {
     setSelectedProduct(prod);
+    setIsSelected(true);
   }
 
   function handleChange(event) {
@@ -162,7 +177,11 @@ const ProdsPrices = () => {
           {producto.length === 0 && "Este producto aun no esta disponible"}
           {map}
         </LayoutProducts>
-        {info ? <InfoPage selectedProduct={selectedProduct} /> : "XD"  }
+        {info ? (
+          <InfoPage selectedProduct={selectedProduct} />
+        ) : (
+          <NoProductSelected />
+        )}
       </div>
     </>
   );
