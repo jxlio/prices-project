@@ -122,6 +122,7 @@ const ProdsPrices = () => {
   const show = (prod) => {
     setInfo(true);
     selectProd(prod);
+    setIsSelected(true);
   };
 
   const map = producto.map((prod) => {
@@ -150,7 +151,7 @@ const ProdsPrices = () => {
 
   function selectProd(prod) {
     setSelectedProduct(prod);
-    setIsSelected(true);
+   
   }
 
   function handleChange(event) {
