@@ -11,9 +11,12 @@ const Index = () => {
       <section className="hero">
         <h1>ComparaYa!</h1>
         <p>¿Quieres saber los mejores precios de la ciudad de Sincelejo?</p>
-       <Link to={"/products"}> <button>¡PruebaYa!  </button>  </Link>  
+        <Link to={"/products"}>
+          {" "}
+          <button>¡PruebaYa! </button>{" "}
+        </Link>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

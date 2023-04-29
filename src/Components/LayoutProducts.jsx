@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 const LayoutProducts = ({ children, change, state }) => {
   return (
     <>
-    
       <section className="lay-cont">
         <div>
-        <Link to={"/"}>  <i class="fa-solid fa-house back"></i> </Link> 
+          <Link to={"/"}>
+            {" "}
+            <i className="fa-solid fa-house back"></i>{" "}
+          </Link>
         </div>
-      
+
         <header className="top-sec">
           <h1>PRODUCTOS</h1>
           <div className="search-container">
