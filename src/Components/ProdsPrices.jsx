@@ -107,7 +107,7 @@ const InfoPage = ({ selectedProduct }) => {
   return (
     <div className="info">
       <div className="main-info">
-        <h1>{selectedProduct.name}</h1>
+        <h2>{selectedProduct.name}</h2>
         <p>{`${selectedProduct.description}`}</p>
         <div className="price-info">{`$${selectedProduct.price}`}</div>
         <img src={selectedProduct.img} alt="" />
