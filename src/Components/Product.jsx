@@ -10,7 +10,7 @@ const Product = ({ img, name, click, isSelected}) => {
     <div className={`cont-pro ${isSelected ? 'selected' : ''}`} onClick={click}>
         <div className="contenido">
         <img src={img} alt="" />
-        <h5>{name} </h5>
+        <p>{name} </p>
         </div>
     </div>
   );

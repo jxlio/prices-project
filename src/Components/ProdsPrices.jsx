@@ -38,7 +38,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   };
 
   const map = producto.map((prod) => {
-    if (producto) {
+
       if (prod == selectedProduct) {
         return (
           <Product
@@ -51,7 +51,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           />
         );
       }
-    }
+  
     return (
       <Product
         name={prod.name}
@@ -107,7 +107,8 @@ const InfoPage = ({ selectedProduct }) => {
   return (
     <div className="info">
       <div className="main-info">
-        <h2>{selectedProduct.name}</h2>
+        <h1>{selectedProduct.name}</h1>
+        <p>{`${selectedProduct.description}`}</p>
         <div className="price-info">{`$${selectedProduct.price}`}</div>
         <img src={selectedProduct.img} alt="" />
         <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
