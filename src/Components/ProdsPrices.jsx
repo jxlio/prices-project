@@ -87,7 +87,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
     <>
       <div className="dad">
         <LayoutProducts change={handleChange} value={resultado}>
-          {producto.length === 0 && "Este producto aun no esta disponible"}
+          {producto.length === 0 && <p className="no-ava"> Este producto aun no esta disponible</p>}
           {map}
         </LayoutProducts>
         {info ? (

@@ -196,3 +196,7 @@ input[type="search"] {
 .selected {
   background-color: #2284d3;
 }
+
+.no-ava{
+  color:#f2f2f2;
+}
