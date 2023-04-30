@@ -7,7 +7,7 @@ const Product = ({ img, name, click, isSelected, modalFn }) => {
       onClick={modalFn}
     >
       <div className="contenido">
-        <img src={img} alt="" />
+        <img  src={img} alt="" />
         <h4> {name} </h4>
       </div>
     </div>

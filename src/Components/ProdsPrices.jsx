@@ -30,6 +30,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   const CloseModal = () => {
     setOpenModal(false);
+    setIsSelected(false)
   };
 
   const map = producto.map((prod) => {
