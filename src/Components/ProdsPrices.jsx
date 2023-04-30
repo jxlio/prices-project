@@ -16,12 +16,12 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .catch((error) => console.error(error));
   }, []);
 
-  const [info, setInfo] = useState(false);
+
   const [selectedProduct, setSelectedProduct] = useState();
-  const [resultado, setResultado] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+
 
   const handleModal = (prod) => {
     setOpenModal(true);
@@ -34,7 +34,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setOpenModal(false);
   };
 
-  const map = producto.map((prod) => {
+  const map = producto.map(
+    (prod) => {
     if (prod == selectedProduct) {
       return (
         <Product
@@ -63,21 +64,23 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setSelectedProduct(prod);
   }
 
-  function handleChange(event, data) {
-    setResultado(event.target.value);
-    if (event.target.value === "") {
-      setProducto(originalProduct);
+  function handleChange(event) {
+    const resultado = event.target.value.trim().toLowerCase();
+    if (resultado === '') {
+      setProducto(originalProduct)
     } else {
-      filtro(event.target.value);
-    }
+      filtro(resultado)
+  
   }
+}
 
-  const filtro = (busqueda) => {
-    var result = producto.filter((produ) =>
-      produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
-    );
-    setProducto(result);
-  };
+
+const filtro = (busqueda) => {
+  const result = originalProduct.filter((produ) =>
+    produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
+  );
+  setProducto(result);
+};
 
   return (
     <>
@@ -117,12 +120,15 @@ const InfoPage = ({ selectedProduct }) => {
     return null;
   }
 
-  
   return (
     <div className="info">
       <h2>{selectedProduct.name}</h2>
       <p>{`${selectedProduct.description}`}</p>
-      <div className="price-info">{`Mas barato: $ ${selectedProduct.precio_d1 > selectedProduct.precio_ara ?  selectedProduct.precio_ara : selectedProduct.precio_d1}`}</div>
+      <div className="price-info">{`Mas barato: $ ${
+        selectedProduct.precio_d1 > selectedProduct.precio_ara
+          ? selectedProduct.precio_ara
+          : selectedProduct.precio_d1
+      }`}</div>
       <section className="sec-images">
         <img src={selectedProduct.img1} alt="" />
       </section>

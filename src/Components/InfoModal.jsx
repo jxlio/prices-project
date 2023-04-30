@@ -1,16 +1,15 @@
-import React from 'react'
-import "../Components/Modal.css"
+import React from "react";
+import "../Components/Modal.css";
 
-const InfoModal = ({children, close}) => {
+const InfoModal = ({ children, close }) => {
   return (
-    <div className='back-modal'>
-   
-        <div className='modal-container'>
+    <div className="back-modal">
+      <div className="modal-container">
         <button onClick={close}> X </button>
-            {children}
-        </div>
+        {children}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default InfoModal
+export default InfoModal;

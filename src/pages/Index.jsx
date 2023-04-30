@@ -10,14 +10,13 @@ const Index = () => {
       <Navbar />
       <section className="hero">
         <section className="info-cont">
-        <h1>ComparaYa!</h1>
-        <p>¡¿Quieres saber los mejores precios de la ciudad de Sincelejo?!</p>
-        <Link to={"/products"}>
-          {" "}
-          <button>¡PruebaYa! </button>{" "}
-        </Link>
+          <h1>ComparaYa!</h1>
+          <p>¡¿Quieres saber los mejores precios de la ciudad de Sincelejo?!</p>
+          <Link to={"/products"}>
+            {" "}
+            <button>¡PruebaYa! </button>{" "}
+          </Link>
         </section>
-
       </section>
       <Footer />
     </div>

@@ -7,8 +7,11 @@ function App() {
   const [producto, setProducto] = useState([]);
   return (
     <Routes>
-      <Route path="/" element={<Index/>} />
-      <Route path="/products" element={<ProdsPrices setProducto={setProducto} producto={producto} />} />
+      <Route path="/" element={<Index />} />
+      <Route
+        path="/products"
+        element={<ProdsPrices setProducto={setProducto} producto={producto} />}
+      />
     </Routes>
   );
 }
