@@ -24,16 +24,18 @@
   text-decoration: none;
   color: #fff;
   font-size: 1.2rem;
-  font-weight: lighter;
+  font-weight: bold;
   font-family: "Poppins", sans-serif;
   margin: 0 14px;
   transition: all 0.3s ease-in-out;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid white;
 }
 
 .nav a:hover {
   color: #e5e5e5;
   transition: all 0.3s ease;
-  border-bottom: 1px solid white;
+ 
 }
 
 .nav-container Link:hover {
@@ -57,12 +59,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #1f1f24;
+  background-color: rgb(0, 0, 0, 0,9);
+  background-image: url("whbl1maf.png");
   background-size: cover;
   background-position: center;
   text-align: center;
   color: #fff;
 }
+
+
 
 .hero h1 {
   align-self: flex-start;
@@ -70,7 +75,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   margin-bottom: 2rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
 }
 
 .hero p {
@@ -78,7 +83,7 @@
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
   margin-bottom: 3rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
 }
 
 .hero button {
