@@ -1,18 +1,9 @@
 import React, { useEffect } from "react";
 import Product from "../Components/Product";
-import LayoutProducts from "../Components/LayoutProducts";
 import { useState } from "react";
 import "../App.css";
-import NoProductSelected from "./NoProductSelected";
-
-/* const ProdsPrices = () => {
-  useEffect(() => {
-    fetch("http://localhost/products/index.php")
-      .then((response) => response.json())
-      .then((data) => 
-        setProducto(data))
-      .catch((error) => console.error(error));
-  }, []); */
+import { Link } from "react-router-dom";
+import InfoModal from "../Components/InfoModal";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   useEffect(() => {
@@ -30,35 +21,40 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [resultado, setResultado] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
-  const show = (prod) => {
-    setInfo(true);
+  const handleModal = (prod) => {
+    setOpenModal(true);
     selectProd(prod);
     setIsSelected(true);
+    console.log(openModal);
+  };
+
+  const CloseModal = () => {
+    setOpenModal(false);
   };
 
   const map = producto.map((prod) => {
+    if (prod == selectedProduct) {
+      return (
+        <Product
+          isSelected={isSelected}
+          name={prod.name}
+          price={prod.price}
+          img={prod.img1}
+          key={prod.id}
+          modalFn={() => handleModal(prod)}
+        />
+      );
+    }
 
-      if (prod == selectedProduct) {
-        return (
-          <Product
-            isSelected={isSelected}
-            name={prod.name}
-            price={prod.price}
-            img={prod.img}
-            key={prod.id}
-            click={() => show(prod)}
-          />
-        );
-      }
-  
     return (
       <Product
         name={prod.name}
         price={prod.price}
-        img={prod.img}
+        img={prod.img1}
         key={prod.id}
-        click={() => show(prod)}
+        modalFn={() => handleModal(prod)}
       />
     );
   });
@@ -85,15 +81,32 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   return (
     <>
-      <div className="dad">
-        <LayoutProducts change={handleChange} value={resultado}>
-          {producto.length === 0 && <p className="no-ava"> Este producto aun no esta disponible</p>}
-          {map}
-        </LayoutProducts>
-        {info ? (
-          <InfoPage selectedProduct={selectedProduct} />
-        ) : (
-          <NoProductSelected />
+      <div className="main">
+        <div className="home-container">
+        <Link to={"/"} className="home-button">
+          {" "}
+          <i className="fas fa-home"></i>{" "}
+        </Link>
+        </div>
+        
+
+        <div className="input-container">
+          <input
+            type="search"
+            placeholder="Busca un producto..."
+            onChange={handleChange}
+          />
+        </div>
+
+        {producto.length === 0 && (
+          <h2 className="no-ava"> Este producto aun no esta disponible</h2>
+        )}
+        <section className="products-container ">{map}</section>
+        {openModal && (
+          <InfoModal close={CloseModal}>
+            {" "}
+            <InfoPage selectedProduct={selectedProduct} />{" "}
+          </InfoModal>
         )}
       </div>
     </>
@@ -106,15 +119,16 @@ const InfoPage = ({ selectedProduct }) => {
   }
   return (
     <div className="info">
-      <div className="main-info">
-        <h2>{selectedProduct.name}</h2>
-        <p>{`${selectedProduct.description}`}</p>
-        <div className="price-info">{`$${selectedProduct.price}`}</div>
-        <img src={selectedProduct.img} alt="" />
-        <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
-        <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
-        <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
-      </div>
+      <h2>{selectedProduct.name}</h2>
+      <p>{`${selectedProduct.description}`}</p>
+      <div className="price-info">{`$${selectedProduct.price}`}</div>
+      <section className="sec-images">
+        <img src={selectedProduct.img1} alt="" />
+      </section>
+
+      <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
+      <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
+      <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
     </div>
   );
 };
