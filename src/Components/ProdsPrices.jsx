@@ -83,12 +83,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
     <>
       <div className="main">
         <div className="home-container">
-        <Link to={"/"} className="home-button">
-          {" "}
-          <i className="fas fa-home"></i>{" "}
-        </Link>
+          <Link to={"/"} className="home-button">
+            {" "}
+            <i className="fas fa-home"></i>{" "}
+          </Link>
         </div>
-        
 
         <div className="input-container">
           <input
@@ -117,11 +116,13 @@ const InfoPage = ({ selectedProduct }) => {
   if (!selectedProduct) {
     return null;
   }
+
+  
   return (
     <div className="info">
       <h2>{selectedProduct.name}</h2>
       <p>{`${selectedProduct.description}`}</p>
-      <div className="price-info">{`$${selectedProduct.price}`}</div>
+      <div className="price-info">{`Mas barato: $ ${selectedProduct.precio_d1 > selectedProduct.precio_ara ?  selectedProduct.precio_ara : selectedProduct.precio_d1}`}</div>
       <section className="sec-images">
         <img src={selectedProduct.img1} alt="" />
       </section>
