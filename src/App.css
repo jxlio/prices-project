@@ -77,10 +77,16 @@ selected:hover {
 .info {
   background-color: white;
   width: 100%;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.info h2 p{
+  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .info span {
@@ -97,6 +103,7 @@ selected:hover {
 .info img {
   width: 200px;
   height: 200px;
+  margin: 20px;
 }
 
 .no-prod-container {
@@ -170,6 +177,7 @@ selected:hover {
   color: #ffffff;
   transform: scale(1.1);
 }
+
 
 @media screen and (min-width: 768px) {
   .products-container {

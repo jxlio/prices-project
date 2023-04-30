@@ -5,7 +5,7 @@ const InfoModal = ({ children, close }) => {
   return (
     <div className="back-modal">
       <div className="modal-container">
-        <button onClick={close}> X </button>
+      <button onClick={close}> X </button>
         {children}
       </div>
     </div>

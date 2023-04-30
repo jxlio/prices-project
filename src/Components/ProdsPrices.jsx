@@ -16,12 +16,10 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .catch((error) => console.error(error));
   }, []);
 
-
   const [selectedProduct, setSelectedProduct] = useState();
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
 
   const handleModal = (prod) => {
     setOpenModal(true);
@@ -34,8 +32,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setOpenModal(false);
   };
 
-  const map = producto.map(
-    (prod) => {
+  const map = producto.map((prod) => {
     if (prod == selectedProduct) {
       return (
         <Product
@@ -66,21 +63,19 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   function handleChange(event) {
     const resultado = event.target.value.trim().toLowerCase();
-    if (resultado === '') {
-      setProducto(originalProduct)
+    if (resultado === "") {
+      setProducto(originalProduct);
     } else {
-      filtro(resultado)
-  
+      filtro(resultado);
+    }
   }
-}
 
-
-const filtro = (busqueda) => {
-  const result = originalProduct.filter((produ) =>
-    produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
-  );
-  setProducto(result);
-};
+  const filtro = (busqueda) => {
+    const result = originalProduct.filter((produ) =>
+      produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
+    );
+    setProducto(result);
+  };
 
   return (
     <>
@@ -132,10 +127,11 @@ const InfoPage = ({ selectedProduct }) => {
       <section className="sec-images">
         <img src={selectedProduct.img1} alt="" />
       </section>
+    
+        <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
+        <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
+        <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
 
-      <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
-      <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
-      <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
     </div>
   );
 };
