@@ -1,0 +1,70 @@
+.formAdd {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.atras{
+  background-color: #ffffff;
+  border: none;
+  border-radius: 30%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: #666666;
+  cursor: pointer;
+  font-size: 24px;
+  height: 30px;
+  width: 30px;
+  transition: all 0.3s ease-in-out;
+  padding: 10px;
+  margin-left: 20px;
+}
+.atras-cont{
+  margin-top: 20px;
+}
+
+.atras:hover{
+  background-color: #666666;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.formAdd p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.formAdd label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.formAdd label input {
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-top: 4px;
+}
+
+.formAdd button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 40%;
+}
+
+.formAdd button[type="submit"]:hover {
+  background-color: #3e8e41;
+}

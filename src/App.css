@@ -43,7 +43,6 @@ body {
   width: 100px;
   height: 200px;
   object-fit: cover;
-  
 }
 
 .contenido {
@@ -172,6 +171,7 @@ selected:hover {
   width: 50px;
   transition: all 0.3s ease-in-out;
   padding: 10px;
+  margin-left: 20px;
 }
 
 .home-button:hover {

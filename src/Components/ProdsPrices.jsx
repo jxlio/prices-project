@@ -12,6 +12,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .then((data) => {
         setProducto(data);
         setOriginalProduct(data);
+        console.log(data);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -30,7 +31,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   const CloseModal = () => {
     setOpenModal(false);
-    setIsSelected(false)
+    setIsSelected(false);
   };
 
   const map = producto.map((prod) => {
@@ -83,8 +84,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
       <div className="main">
         <div className="home-container">
           <Link to={"/"} className="home-button">
-            {" "}
-            <i className="fas fa-home"></i>{" "}
+            <i className="fas fa-home"></i>
+          </Link>
+
+          <Link to={"/add"} className="home-button">
+            <i class="fa-solid fa-file-circle-plus"></i>
           </Link>
         </div>
 
@@ -128,11 +132,10 @@ const InfoPage = ({ selectedProduct }) => {
       <section className="sec-images">
         <img src={selectedProduct.img1} alt="" />
       </section>
-    
-        <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
-        <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
-        <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
 
+      <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
+      <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
+      <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
     </div>
   );
 };
