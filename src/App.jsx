@@ -13,7 +13,7 @@ function App() {
         path="/products"
         element={<ProdsPrices setProducto={setProducto} producto={producto} />}
       />
-      <Route path="/add" element={<FormAddProd products={producto} setProducts={setProducto} />} />
+      <Route path="/add" element={<FormAddProd producto={producto} setProducto={setProducto} />} />
     </Routes>
   );
 }

@@ -11,10 +11,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .then((response) => response.json())
       .then((data) => {
         setProducto(data);
-        setOriginalProduct(data);
-        console.log(data);
-      })
-      .catch((error) => console.error(error));
+      });
   }, []);
 
   const [selectedProduct, setSelectedProduct] = useState();
@@ -26,12 +23,25 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setOpenModal(true);
     selectProd(prod);
     setIsSelected(true);
-    console.log(openModal);
   };
 
   const CloseModal = () => {
     setOpenModal(false);
     setIsSelected(false);
+  };
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost/products/index.php?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Item deleted:", data);
+        setProducto(producto.filter((item) => item.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
   };
 
   const map = producto.map((prod) => {
@@ -44,6 +54,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           img={prod.img1}
           key={prod.id}
           modalFn={() => handleModal(prod)}
+          del={() => handleDelete(prod.id)}
         />
       );
     }
@@ -55,6 +66,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         img={prod.img1}
         key={prod.id}
         modalFn={() => handleModal(prod)}
+        del={() => handleDelete(prod.id)}
       />
     );
   });
@@ -88,7 +100,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           </Link>
 
           <Link to={"/add"} className="home-button">
-            <i class="fa-solid fa-file-circle-plus"></i>
+            <i className="fa-solid fa-file-circle-plus"></i>
           </Link>
         </div>
 

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
 
-const Product = ({ img, name, click, isSelected, modalFn }) => {
+const Product = ({ img, name, isSelected, modalFn, del }) => {
   return (
-    <div
-      className={`cont-pro ${isSelected ? "selected" : ""}`}
-      onClick={modalFn}
-    >
-      <div className="contenido">
-        <img  src={img} alt="" />
+    <div className={`cont-pro ${isSelected ? "selected" : ""}`}>
+      <button
+        className="delete"
+        onClick={del}
+      >
+        <i className="fa-solid fa-trash-can"></i>
+      </button>
+      <div className="contenido" onClick={modalFn}>
+        <img src={img} alt="" />
         <h4> {name} </h4>
       </div>
     </div>

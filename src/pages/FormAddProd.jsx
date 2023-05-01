@@ -24,7 +24,7 @@ const FormAddProd = ({ producto, setProducto }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     const fd = new FormData();
     fd.append("name", form.name);
     fd.append("description", form.description);
@@ -32,42 +32,44 @@ const FormAddProd = ({ producto, setProducto }) => {
     fd.append("img1", form.img1);
     fd.append("precio_ara", form.precio_ara);
     fd.append("precio_d1", form.precio_d1);
-
+  
     fetch("http://localhost/products/index.php", {
       method: "POST",
       body: fd,
-    }).then((response) => response.json());
-
-    toast.success("Producto agregado con exito", {
-      position: "top-right",
-      autoClose: 2000,
-      closeOnClick: true,
-      theme: "light",
-    });
-    setForm({
-      name: "",
-      description: "",
-      quantity: "",
-      img1: "",
-      precio_ara: "",
-      precio_d1: "",
     })
+      .then((response) => response.json())
       .then((newProduct) => {
-        setProducto([...producto, newProduct]);
+        setProducto(prevState => [...prevState, newProduct]);
+        setForm({
+          name: "",
+          description: "",
+          quantity: "",
+          img1: "",
+          precio_ara: "",
+          precio_d1: "",
+        });
+        toast.success("Producto agregado con exito", {
+          position: "top-right",
+          autoClose: 2000,
+          closeOnClick: true,
+          theme: "light",
+        });
       })
-      .catch((error) => console.error(error));
-    toast.error("Error");
+      .catch((error) => {
+        console.error(error);
+      });
   };
+  
 
   return (
     <>
-    <div className="atras-cont" title="Volver" >
-    <Link to={"/products"} className="atras">
-        {" "}
-        <i class="fa-solid fa-circle-left"></i>{" "}
-      </Link>
-    </div>
-     
+      <div className="atras-cont" title="Volver">
+        <Link to={"/products"} className="atras">
+          {" "}
+          <i className="fa-solid fa-circle-left"></i>{" "}
+        </Link>
+      </div>
+
       <form className="formAdd" onSubmit={handleSubmit}>
         <ToastContainer />
 

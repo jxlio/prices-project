@@ -39,6 +39,14 @@ body {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
+.cont-pro:hover .delete {
+  opacity: 1; /* show the button on hover */
+}
+
+.cont-pro:hover{
+  display: block;
+}
+
 .cont-pro img {
   width: 100px;
   height: 200px;
@@ -179,6 +187,29 @@ selected:hover {
   color: #ffffff;
   transform: scale(1.1);
 }
+
+.delete{
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out; 
+  margin: 17px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+
+
+
+
+
+
 
 
 @media screen and (min-width: 768px) {
