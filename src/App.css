@@ -20,7 +20,7 @@ body {
   background-color: white;
   padding: 1rem;
   transition: all 0.3s ease-in-out;
-  width: 240px;
+  width: 230px;
   height: 300px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -35,12 +35,12 @@ body {
 }
 
 .cont-pro:hover {
-  transform: scale(1.05);
+  transform: scale(1.2);
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .cont-pro:hover .delete {
-  opacity: 1; /* show the button on hover */
+  opacity: 1; 
 }
 
 .cont-pro:hover{
@@ -48,7 +48,7 @@ body {
 }
 
 .cont-pro img {
-  width: 100px;
+  width: 150px;
   height: 200px;
   object-fit: cover;
 }
@@ -93,13 +93,16 @@ selected:hover {
   text-align: center;
 }
 
-.info h2 p{
+.info h2{
   margin-bottom: 20px;
-  gap: 20px;
+  gap: 10px;
+}
+.info p{
+  font-size: 20px;
 }
 
 .info span {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -111,7 +114,7 @@ selected:hover {
 
 .info img {
   width: 200px;
-  height: 200px;
+  height: 240px;
   margin: 20px;
 }
 
@@ -194,11 +197,11 @@ selected:hover {
   right: 0;
   opacity: 0;
   transition: opacity 0.2s ease-in-out; 
-  margin: 17px;
+  margin: 14px;
   background-color: #e74c3c;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 12px;
   border-radius: 5px;
   cursor: pointer;
 

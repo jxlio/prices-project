@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
 
 const ProdsPrices = ({ setProducto, producto }) => {
+
+
+  
   useEffect(() => {
     fetch("http://localhost/products/index.php")
       .then((response) => response.json())
       .then((data) => {
         setProducto(data);
+        setOriginalProduct(data)
       });
   }, []);
 
