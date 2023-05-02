@@ -32,15 +32,19 @@
 
 .formAdd p {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 16px;
+  font-family: "Poppins", sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  
+
 }
 
 .formAdd label {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 11px;
+  font-family: "Poppins", sans-serif;
 }
 
 .formAdd label input {
