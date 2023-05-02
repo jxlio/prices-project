@@ -17,18 +17,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: white;
   padding: 1rem;
   transition: all 0.3s ease-in-out;
   width: 230px;
-  height: 300px;
+  height: 302px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
-.contenido h4 {
-  font-size: 1.2rem;
+.contenido h4{
+  font-size: 1.1rem;
   color: #2b2a2b;
   margin-left: 10px;
   transition: all 0.3s ease-in-out;
@@ -51,6 +52,7 @@ body {
   width: 150px;
   height: 200px;
   object-fit: cover;
+  margin-bottom: 10px;
 }
 
 .contenido {
@@ -156,13 +158,13 @@ selected:hover {
   background-color: #ffff;
   font-size: 18px;
   color: #333;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
 }
 
 .input-container input:focus {
   outline: none;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
 }
 
 .home-container {
