@@ -4,6 +4,7 @@ import { useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
+import {TbMeat} from "react-icons/tb"
 
 const ProdsPrices = ({ setProducto, producto }) => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [mensaje, setMensaje] = useState("")
 
   const handleModal = (prod) => {
     setOpenModal(true);
@@ -86,33 +88,32 @@ const ProdsPrices = ({ setProducto, producto }) => {
   }
 
   const filtro = (busqueda) => {
-    const result = originalProduct.filter((produ) =>
-      produ.name.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(busqueda.toLowerCase()) ||
-      produ.precio_ara.toString().toLowerCase().includes(busqueda.toLowerCase()) || 
-      produ.precio_d1.toString().toLowerCase().includes(busqueda.toLowerCase()) 
+    const result = originalProduct.filter(
+      (produ) =>
+        produ.name
+          .toString()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(busqueda.toLowerCase()) ||
+        produ.precio_ara
+          .toString()
+          .toLowerCase()
+          .includes(busqueda.toLowerCase()) ||
+        produ.precio_d1
+          .toString()
+          .toLowerCase()
+          .includes(busqueda.toLowerCase())
     );
     setProducto(result);
   };
-  
 
-  const handleDrinks = () => {
-    fetch(`http://localhost/products/index.php?category=${"bebida"}`)
+  const handleCategory = (categoria) => {
+    fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
-      .then((bebidas) => {
-        setProducto(bebidas);
-        setOriginalProduct(bebidas);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleAbas = () => {
-    fetch(`http://localhost/products/index.php?category=${"abarrote"}`)
-      .then((response) => response.json())
-      .then((bebidas) => {
-        setProducto(bebidas);
-        setOriginalProduct(bebidas);
+      .then((categorico) => {
+       setProducto(categorico)
+       
       })
       .catch((error) => {
         console.error(error);
@@ -132,15 +133,20 @@ const ProdsPrices = ({ setProducto, producto }) => {
           </Link>
 
           <div className="cates">
-            <div title="bebidas" className=" category" onClick={handleDrinks}>
+            <div title="bebidas" className=" category" onClick={()=> handleCategory("bebida")}>
               <i className="fa-solid fa-wine-glass"></i>
             </div>
 
-            <div title="abarrotes" className="category" onClick={handleAbas}>
+            <div title="abarrotes" className="category" onClick={()=> handleCategory("abarrote")}>
               <i className="fa-solid fa-bowl-food"></i>
             </div>
 
-            <div title="todos los productos"
+            <div title="abarrotes" className="category" onClick={()=> handleCategory("carne")}>
+              <TbMeat/>
+            </div>
+
+            <div
+              title="todos los productos"
               className="category"
               onClick={() => {
                 location.reload();
@@ -148,6 +154,9 @@ const ProdsPrices = ({ setProducto, producto }) => {
             >
               <i class="fa-solid fa-boxes-stacked"></i>
             </div>
+
+              
+
           </div>
         </div>
 
@@ -158,6 +167,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
             onChange={handleChange}
           />
         </div>
+        {mensaje && <p>{mensaje} </p>}
 
         {producto.length === 0 && (
           <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
