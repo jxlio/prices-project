@@ -26,6 +26,7 @@ body {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
 }
 
 .contenido h4{
@@ -36,20 +37,18 @@ body {
 }
 
 .cont-pro:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .cont-pro:hover .delete {
   opacity: 1; 
-}
-
-.cont-pro:hover{
   display: block;
 }
 
+
 .cont-pro img {
-  width: 150px;
+  width: 200px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
@@ -93,25 +92,30 @@ selected:hover {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  
 }
 
 .info h2{
   margin-bottom: 20px;
   gap: 10px;
+  font-family: "Poppins", sans-serif;
 }
 .info p{
   font-size: 20px;
+
 }
 
 .info span {
   font-size: 20px;
   font-weight: bold;
+  font-family: "Poppins", sans-serif
 }
 
 .price-info {
   font-size: 23px;
   font-weight: bold;
   font-family: cursive;
+  font-family: "Poppins", sans-serif
 }
 
 .info img {
@@ -156,10 +160,11 @@ selected:hover {
   border: none;
   border-radius: 20px;
   background-color: #ffff;
-  font-size: 18px;
+  font-size: 17px;
   color: #333;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in-out;
+  font-family: "Poppins", sans-serif;
 }
 
 .input-container input:focus {
@@ -171,6 +176,40 @@ selected:hover {
   margin-left: 20px;
   margin-top: 20px;
 }
+
+.cates {
+  float: right;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category{
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: #666666;
+  cursor: pointer;
+  font-size: 22px;
+  height: 30px;
+  width: 28px;
+  transition: all 0.3s ease-in-out;
+  padding: 9px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category:hover{
+  background-color: #666666;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+
 
 .home-button {
   background-color: #ffffff;
@@ -185,7 +224,9 @@ selected:hover {
   transition: all 0.3s ease-in-out;
   padding: 10px;
   margin-left: 20px;
+  
 }
+
 
 .home-button:hover {
   background-color: #666666;
@@ -194,10 +235,11 @@ selected:hover {
 }
 
 .delete{
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.2s ease-in-out; 
   margin: 14px;
   background-color: #e74c3c;

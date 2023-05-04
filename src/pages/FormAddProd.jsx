@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 const FormAddProd = ({ producto, setProducto }) => {
   const [form, setForm] = useState({
     name: "",
+    category: "",
     description: "",
     quantity: "",
     img1: "",
     precio_ara: "",
     precio_d1: "",
+    
   });
 
   function handleChange(event) {
@@ -27,11 +29,13 @@ const FormAddProd = ({ producto, setProducto }) => {
   
     const fd = new FormData();
     fd.append("name", form.name);
+    fd.append("category", form.category);
     fd.append("description", form.description);
     fd.append("quantity", form.quantity);
     fd.append("img1", form.img1);
     fd.append("precio_ara", form.precio_ara);
     fd.append("precio_d1", form.precio_d1);
+    
   
     fetch("http://localhost/products/index.php", {
       method: "POST",
@@ -42,6 +46,7 @@ const FormAddProd = ({ producto, setProducto }) => {
         setProducto(prevState => [...prevState, newProduct]);
         setForm({
           name: "",
+          category:"",
           description: "",
           quantity: "",
           img1: "",
@@ -86,17 +91,20 @@ const FormAddProd = ({ producto, setProducto }) => {
             required
           />
         </label>
-        <label htmlFor="description">
+
+        <label htmlFor="category">
           {" "}
-          Descripcion{" "}
+           Categoria{" "}
           <input
+          placeholder="por favor ingresa la categoria en minusculas. ej: abarrote, bebida "
             type="text"
-            name="description"
-            value={form.description}
+            name="category"
+            value={form.category}
             onChange={handleChange}
             required
           />
         </label>
+
         <label htmlFor="quantity">
           Cantidad
           <input

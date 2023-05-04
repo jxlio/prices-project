@@ -6,15 +6,12 @@ import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
 
 const ProdsPrices = ({ setProducto, producto }) => {
-
-
-  
   useEffect(() => {
     fetch("http://localhost/products/index.php")
       .then((response) => response.json())
       .then((data) => {
         setProducto(data);
-        setOriginalProduct(data)
+        setOriginalProduct(data);
       });
   }, []);
 
@@ -95,6 +92,30 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setProducto(result);
   };
 
+  const handleDrinks = () => {
+    fetch(`http://localhost/products/index.php?category=${"bebida"}`)
+      .then((response) => response.json())
+      .then((bebidas) => {
+        setProducto(bebidas);
+        setOriginalProduct(bebidas);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleAbas = () => {
+    fetch(`http://localhost/products/index.php?category=${"abarrote"}`)
+      .then((response) => response.json())
+      .then((bebidas) => {
+        setProducto(bebidas);
+        setOriginalProduct(bebidas);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className="main">
@@ -106,6 +127,25 @@ const ProdsPrices = ({ setProducto, producto }) => {
           <Link to={"/add"} className="home-button">
             <i className="fa-solid fa-file-circle-plus"></i>
           </Link>
+
+          <div className="cates">
+            <div className=" category" onClick={handleDrinks}>
+              <i className="fa-solid fa-wine-glass"></i>
+            </div>
+
+            <div className="category" onClick={handleAbas}>
+              <i className="fa-solid fa-bowl-food"></i>
+            </div>
+
+            <div
+              className="category"
+              onClick={() => {
+                location.reload();
+              }}
+            >
+              <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+          </div>
         </div>
 
         <div className="input-container">
@@ -117,9 +157,10 @@ const ProdsPrices = ({ setProducto, producto }) => {
         </div>
 
         {producto.length === 0 && (
-          <h2 className="no-ava"> Este producto aun no esta disponible</h2>
+          <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
         )}
-        <section className="products-container ">{map}</section>
+
+        <section className="products-container "> {map}</section>
         {openModal && (
           <InfoModal close={CloseModal}>
             {" "}
@@ -139,7 +180,6 @@ const InfoPage = ({ selectedProduct }) => {
   return (
     <div className="info">
       <h2>{selectedProduct.name}</h2>
-      <p>{`${selectedProduct.description}`}</p>
       <div className="price-info">{`Mas barato: $ ${
         selectedProduct.precio_d1 > selectedProduct.precio_ara
           ? selectedProduct.precio_ara
