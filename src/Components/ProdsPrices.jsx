@@ -87,10 +87,13 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   const filtro = (busqueda) => {
     const result = originalProduct.filter((produ) =>
-      produ.name.toString().toLowerCase().includes(busqueda.toLowerCase())
+      produ.name.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(busqueda.toLowerCase()) ||
+      produ.precio_ara.toString().toLowerCase().includes(busqueda.toLowerCase()) || 
+      produ.precio_d1.toString().toLowerCase().includes(busqueda.toLowerCase()) 
     );
     setProducto(result);
   };
+  
 
   const handleDrinks = () => {
     fetch(`http://localhost/products/index.php?category=${"bebida"}`)
@@ -129,15 +132,15 @@ const ProdsPrices = ({ setProducto, producto }) => {
           </Link>
 
           <div className="cates">
-            <div className=" category" onClick={handleDrinks}>
+            <div title="bebidas" className=" category" onClick={handleDrinks}>
               <i className="fa-solid fa-wine-glass"></i>
             </div>
 
-            <div className="category" onClick={handleAbas}>
+            <div title="abarrotes" className="category" onClick={handleAbas}>
               <i className="fa-solid fa-bowl-food"></i>
             </div>
 
-            <div
+            <div title="todos los productos"
               className="category"
               onClick={() => {
                 location.reload();
