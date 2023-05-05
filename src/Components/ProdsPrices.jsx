@@ -21,6 +21,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [mensaje, setMensaje] = useState("")
+  const [noProduct, setNoProduct] =  useState(false)
 
   const handleModal = (prod) => {
     setOpenModal(true);
@@ -112,8 +113,13 @@ const ProdsPrices = ({ setProducto, producto }) => {
     fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
       .then((categorico) => {
-       setProducto(categorico)
-       
+       if(categorico.length === 0){
+        setNoProduct(true)
+        setProducto([])
+       }else{
+        setNoProduct(false)
+        setProducto(categorico)
+       }
       })
       .catch((error) => {
         console.error(error);
@@ -141,7 +147,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
               <i className="fa-solid fa-bowl-food"></i>
             </div>
 
-            <div title="abarrotes" className="category" onClick={()=> handleCategory("carne")}>
+            <div title="carnes" className="category" onClick={()=> handleCategory("carne")}>
               <TbMeat/>
             </div>
 
@@ -169,7 +175,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
         </div>
         {mensaje && <p>{mensaje} </p>}
 
-        {producto.length === 0 && (
+        {noProduct && (
+          <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
+        )}
+
+        {producto.length === 0 || !producto &&   (
           <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
         )}
 
