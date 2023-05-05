@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
-import {TbMeat} from "react-icons/tb"
+import { TbMeat } from "react-icons/tb";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   useEffect(() => {
@@ -20,8 +20,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [mensaje, setMensaje] = useState("")
-  const [noProduct, setNoProduct] =  useState(false)
+  const [mensaje, setMensaje] = useState("");
+  const [noProduct, setNoProduct] = useState(false);
 
   const handleModal = (prod) => {
     setOpenModal(true);
@@ -113,13 +113,13 @@ const ProdsPrices = ({ setProducto, producto }) => {
     fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
       .then((categorico) => {
-       if(categorico.length === 0){
-        setNoProduct(true)
-        setProducto([])
-       }else{
-        setNoProduct(false)
-        setProducto(categorico)
-       }
+        if (categorico.length === 0) {
+          setNoProduct(true);
+          setProducto([]);
+        } else {
+          setNoProduct(false);
+          setProducto(categorico);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -139,16 +139,28 @@ const ProdsPrices = ({ setProducto, producto }) => {
           </Link>
 
           <div className="cates">
-            <div title="bebidas" className=" category" onClick={()=> handleCategory("bebida")}>
+            <div
+              title="bebidas"
+              className=" category"
+              onClick={() => handleCategory("bebida")}
+            >
               <i className="fa-solid fa-wine-glass"></i>
             </div>
 
-            <div title="abarrotes" className="category" onClick={()=> handleCategory("abarrote")}>
+            <div
+              title="abarrotes"
+              className="category"
+              onClick={() => handleCategory("abarrote")}
+            >
               <i className="fa-solid fa-bowl-food"></i>
             </div>
 
-            <div title="carnes" className="category" onClick={()=> handleCategory("carne")}>
-              <TbMeat/>
+            <div
+              title="carnes"
+              className="category"
+              onClick={() => handleCategory("carne")}
+            >
+              <TbMeat />
             </div>
 
             <div
@@ -160,9 +172,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
             >
               <i class="fa-solid fa-boxes-stacked"></i>
             </div>
-
-              
-
           </div>
         </div>
 
@@ -175,13 +184,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         </div>
         {mensaje && <p>{mensaje} </p>}
 
-        {noProduct && (
-          <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
-        )}
-
-        {producto.length === 0 || !producto &&   (
-          <h2 className="no-ava"> Al parecer no hay nada aqui... O.o</h2>
-        )}
+        {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
 
         <section className="products-container "> {map}</section>
         {openModal && (
