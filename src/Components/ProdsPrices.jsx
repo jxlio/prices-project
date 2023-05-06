@@ -139,39 +139,17 @@ const ProdsPrices = ({ setProducto, producto }) => {
           </Link>
 
           <div className="cates">
-            <div
-              title="bebidas"
-              className=" category"
-              onClick={() => handleCategory("bebida")}
+            <span>Categorias </span>
+            <select
+              name=""
+              onChange={(event) => handleCategory(event.target.value)}
             >
-              <i className="fa-solid fa-wine-glass"></i>
-            </div>
-
-            <div
-              title="abarrotes"
-              className="category"
-              onClick={() => handleCategory("abarrote")}
-            >
-              <i className="fa-solid fa-bowl-food"></i>
-            </div>
-
-            <div
-              title="carnes"
-              className="category"
-              onClick={() => handleCategory("carne")}
-            >
-              <TbMeat />
-            </div>
-
-            <div
-              title="todos los productos"
-              className="category"
-              onClick={() => {
-                location.reload();
-              }}
-            >
-              <i class="fa-solid fa-boxes-stacked"></i>
-            </div>
+              <option value="">Todos</option>
+              <option value="bebida">Bebidas</option>
+              <option value="abarrote">Abarrotes</option>
+              <option value="carne">Carnes</option>
+              <option value="mecato">Mecatos</option>
+            </select>
           </div>
         </div>
 
@@ -182,7 +160,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
             onChange={handleChange}
           />
         </div>
-        {mensaje && <p>{mensaje} </p>}
+        
 
         {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
 

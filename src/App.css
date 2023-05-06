@@ -29,7 +29,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.contenido h4{
+.contenido h4 {
   font-size: 1.1rem;
   color: #2b2a2b;
   margin-left: 10px;
@@ -42,10 +42,9 @@ body {
 }
 
 .cont-pro:hover .delete {
-  opacity: 1; 
+  opacity: 1;
   display: block;
 }
-
 
 .cont-pro img {
   width: 200px;
@@ -92,30 +91,28 @@ selected:hover {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  
 }
 
-.info h2{
+.info h2 {
   margin-bottom: 20px;
   gap: 10px;
   font-family: "Poppins", sans-serif;
 }
-.info p{
+.info p {
   font-size: 20px;
-
 }
 
 .info span {
   font-size: 20px;
   font-weight: bold;
-  font-family: "Poppins", sans-serif
+  font-family: "Poppins", sans-serif;
 }
 
 .price-info {
   font-size: 23px;
   font-weight: bold;
   font-family: cursive;
-  font-family: "Poppins", sans-serif
+  font-family: "Poppins", sans-serif;
 }
 
 .info img {
@@ -183,9 +180,10 @@ selected:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
-.category{
+.category {
   background-color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -203,13 +201,11 @@ selected:hover {
   align-items: center;
 }
 
-.category:hover{
+.category:hover {
   background-color: #666666;
   color: #ffffff;
   transform: scale(1.1);
 }
-
-
 
 .home-button {
   background-color: #ffffff;
@@ -224,9 +220,7 @@ selected:hover {
   transition: all 0.3s ease-in-out;
   padding: 10px;
   margin-left: 20px;
-  
 }
-
 
 .home-button:hover {
   background-color: #666666;
@@ -234,13 +228,13 @@ selected:hover {
   transform: scale(1.1);
 }
 
-.delete{
+.delete {
   display: none;
   position: absolute;
   top: 0;
   right: 0;
   opacity: 1;
-  transition: opacity 0.2s ease-in-out; 
+  transition: opacity 0.2s ease-in-out;
   margin: 14px;
   background-color: #e74c3c;
   color: #fff;
@@ -248,16 +242,18 @@ selected:hover {
   padding: 10px 12px;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
+select {
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
 
-
-
-
-
-
-
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3273dc;
+}
 
 @media screen and (min-width: 768px) {
   .products-container {
