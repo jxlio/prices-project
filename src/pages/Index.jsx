@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../pages/indexStyles.css";
+import "../Styles/indexStyles.css";
 
 import { Link } from "react-router-dom";
 

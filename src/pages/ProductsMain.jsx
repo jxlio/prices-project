@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import Product from "../Components/Product";
 import { useState } from "react";
-import "../App.css";
+import "../Styles/App.css";
 import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
-import { TbMeat } from "react-icons/tb";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   useEffect(() => {
@@ -20,7 +19,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [mensaje, setMensaje] = useState("");
   const [noProduct, setNoProduct] = useState(false);
 
   const handleModal = (prod) => {
@@ -140,10 +138,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
           <div className="cates">
             <span>Categorias </span>
-            <select
-              name=""
-              onChange={(event) => handleCategory(event.target.value)}
-            >
+            <select onChange={(event) => handleCategory(event.target.value)}>
               <option value="">Todos</option>
               <option value="bebida">Bebidas</option>
               <option value="abarrote">Abarrotes</option>
@@ -160,7 +155,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
             onChange={handleChange}
           />
         </div>
-        
 
         {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
 

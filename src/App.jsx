@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import ProdsPrices from "./Components/ProdsPrices";
+import ProductsMain from "./pages/ProductsMain.jsx"
 import Index from "./pages/Index";
 import { useState } from "react";
-import FormAddProd from "./pages/FormAddProd";
+import AddProduct from "./pages/AddProduct.jsx";
 
 function App() {
   const [producto, setProducto] = useState([]);
@@ -11,11 +11,11 @@ function App() {
       <Route path="/" element={<Index />} />
       <Route
         path="/products"
-        element={<ProdsPrices setProducto={setProducto} producto={producto} />}
+        element={<ProductsMain setProducto={setProducto} producto={producto} />}
       />
       <Route
         path="/add"
-        element={<FormAddProd producto={producto} setProducto={setProducto} />}
+        element={<AddProduct producto={producto} setProducto={setProducto} />}
       />
 
     </Routes>

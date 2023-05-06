@@ -1,5 +1,5 @@
 import React from "react";
-import "../Components/Modal.css";
+import "../Styles/Modal.css";
 
 const InfoModal = ({ children, close }) => {
   return (

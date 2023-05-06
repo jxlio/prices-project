@@ -244,17 +244,45 @@ selected:hover {
   cursor: pointer;
 }
 
-select {
-  font-size: 1rem;
-  border-radius: 0.5rem;
+.cates select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+  background-color: white;
+  color: #333;
+  font-size: 15px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
 }
 
-select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #3273dc;
+.cates select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: solid #333;
+  border-width: 0 1px 1px 0;
+  padding: 3px;
+  cursor: pointer;
+  pointer-events: none;
+  transition: all 0.25s ease;
 }
 
+.cates select:hover::after {
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.cates span {
+  font-family: "Poppins", sans-serif;
+}
+
+.cates option {
+  font-family: "Poppins", sans-serif;
+}
 @media screen and (min-width: 768px) {
   .products-container {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
