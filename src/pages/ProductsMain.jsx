@@ -1,11 +1,17 @@
-import React, { useEffect } from "react";
 import Product from "../Components/Product";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../Styles/App.css";
 import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
+import InfoPage from "../Components/InfoPage";
 
 const ProdsPrices = ({ setProducto, producto }) => {
+  const [selectedProduct, setSelectedProduct] = useState();
+  const [isSelected, setIsSelected] = useState(false);
+  const [originalProduct, setOriginalProduct] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [noProduct, setNoProduct] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost/products/index.php")
       .then((response) => response.json())
@@ -14,24 +20,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
         setOriginalProduct(data);
       });
   }, []);
-
-  const [selectedProduct, setSelectedProduct] = useState();
-  const [isSelected, setIsSelected] = useState(false);
-  const [originalProduct, setOriginalProduct] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [noProduct, setNoProduct] = useState(false);
-
-
-  const handleModal = (prod) => {
-    setOpenModal(true);
-    selectProd(prod);
-    setIsSelected(true);
-  };
-
-  const CloseModal = () => {
-    setOpenModal(false);
-    setIsSelected(false);
-  };
 
   const handleDelete = (id) => {
     fetch(`http://localhost/products/index.php?id=${id}`, {
@@ -45,6 +33,71 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .catch((error) => {
         console.error("Error deleting item:", error);
       });
+  };
+
+  const handleCategory = (categoria) => {
+    fetch(`http://localhost/products/index.php?category=${categoria}`)
+      .then((response) => response.json())
+      .then((categorico) => {
+        if (categorico.length === 0) {
+          setNoProduct(true);
+          setProducto([]);
+        } else {
+          setNoProduct(false);
+          setProducto(categorico);
+          setOriginalProduct(categorico);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleModal = (prod) => {
+    setOpenModal(true);
+    selectProd(prod);
+    setIsSelected(true);
+  };
+
+  const CloseModal = () => {
+    setOpenModal(false);
+    setIsSelected(false);
+  };
+
+  const selectProd = (prod) => {
+    setSelectedProduct(prod);
+  };
+
+
+  
+  const handleChange = (event) => {
+    const resultado = event.target.value.trim().toLowerCase();
+    if (resultado === "") {
+      setProducto(originalProduct);
+    } else {
+      filtro(resultado);
+    }
+  };
+
+  const filtro = (busqueda) => {
+    const result = originalProduct.filter(
+      (produ) =>
+        produ.name
+          .toString()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(busqueda.toLowerCase()) ||
+        produ.precio_ara
+          .toString()
+          .toLowerCase()
+          .includes(busqueda.toLowerCase()) ||
+        produ.precio_d1
+          .toString()
+          .toLowerCase()
+          .includes(busqueda.toLowerCase())
+    );
+    setProducto(result);
   };
 
   const map = producto.map((prod) => {
@@ -73,59 +126,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
       />
     );
   });
-
-  function selectProd(prod) {
-    setSelectedProduct(prod);
-  }
-
- 
-  const handleCategory = (categoria) => {
-    fetch(`http://localhost/products/index.php?category=${categoria}`)
-      .then((response) => response.json())
-      .then((categorico) => {
-        if (categorico.length === 0) {
-          setNoProduct(true);
-          setProducto([]);
-        } else {
-          setNoProduct(false);
-          setProducto(categorico);
-          setOriginalProduct(categorico)
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  function handleChange(event) {
-    const resultado = event.target.value.trim().toLowerCase();
-    if (resultado === "") {
-      setProducto(originalProduct);
-    } else {
-      filtro(resultado);
-    }
-  }
-
-  const filtro = (busqueda) => {
-    const result = originalProduct.filter(
-      (produ) =>
-        produ.name
-          .toString()
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .includes(busqueda.toLowerCase()) ||
-        produ.precio_ara
-          .toString()
-          .toLowerCase()
-          .includes(busqueda.toLowerCase()) ||
-        produ.precio_d1
-          .toString()
-          .toLowerCase()
-          .includes(busqueda.toLowerCase())
-    );
-    setProducto(result);
-  };
 
   return (
     <>
@@ -170,30 +170,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
         )}
       </div>
     </>
-  );
-};
-
-const InfoPage = ({ selectedProduct }) => {
-  if (!selectedProduct) {
-    return null;
-  }
-
-  return (
-    <div className="info">
-      <h2>{selectedProduct.name}</h2>
-      <div className="price-info">{`Mas barato: $ ${
-        selectedProduct.precio_d1 > selectedProduct.precio_ara
-          ? selectedProduct.precio_ara
-          : selectedProduct.precio_d1
-      }`}</div>
-      <section className="sec-images">
-        <img src={selectedProduct.img1} alt="" />
-      </section>
-
-      <span>{` Precio D1:  ${selectedProduct.precio_d1}`} </span>
-      <span>{` Precio Ara:  ${selectedProduct.precio_ara}`} </span>
-      <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
-    </div>
   );
 };
 
