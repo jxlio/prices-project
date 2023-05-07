@@ -29,11 +29,12 @@
 
 .modal-container button {
   width: 30px;
-  height: 30px;
+  height: 37px;
   margin-bottom: 10px;
   color: black;
-  background-color:firebrick;
-  align-self: flex-start;
+  background-color:#e74c3c;
+  align-self: flex-end;
+  border-radius: 20%;
 }
 
 .modal-container button:hover {

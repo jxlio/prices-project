@@ -21,6 +21,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [openModal, setOpenModal] = useState(false);
   const [noProduct, setNoProduct] = useState(false);
 
+
   const handleModal = (prod) => {
     setOpenModal(true);
     selectProd(prod);
@@ -77,6 +78,25 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setSelectedProduct(prod);
   }
 
+ 
+  const handleCategory = (categoria) => {
+    fetch(`http://localhost/products/index.php?category=${categoria}`)
+      .then((response) => response.json())
+      .then((categorico) => {
+        if (categorico.length === 0) {
+          setNoProduct(true);
+          setProducto([]);
+        } else {
+          setNoProduct(false);
+          setProducto(categorico);
+          setOriginalProduct(categorico)
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   function handleChange(event) {
     const resultado = event.target.value.trim().toLowerCase();
     if (resultado === "") {
@@ -105,23 +125,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
           .includes(busqueda.toLowerCase())
     );
     setProducto(result);
-  };
-
-  const handleCategory = (categoria) => {
-    fetch(`http://localhost/products/index.php?category=${categoria}`)
-      .then((response) => response.json())
-      .then((categorico) => {
-        if (categorico.length === 0) {
-          setNoProduct(true);
-          setProducto([]);
-        } else {
-          setNoProduct(false);
-          setProducto(categorico);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   };
 
   return (
