@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import ProductsMain from "./pages/ProductsMain.jsx"
+import ProductsMain from "./pages/ProductsMain.jsx";
 import Index from "./pages/Index";
 import { useState } from "react";
 import AddProduct from "./pages/AddProduct.jsx";
@@ -17,7 +17,6 @@ function App() {
         path="/add"
         element={<AddProduct producto={producto} setProducto={setProducto} />}
       />
-
     </Routes>
   );
 }

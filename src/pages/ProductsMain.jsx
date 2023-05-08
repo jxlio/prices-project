@@ -4,6 +4,7 @@ import "../Styles/App.css";
 import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
 import InfoPage from "../Components/InfoPage";
+import ProductsHeader from "../Components/ProductsHeader";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -68,8 +69,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setSelectedProduct(prod);
   };
 
-
-  
   const handleChange = (event) => {
     const resultado = event.target.value.trim().toLowerCase();
     if (resultado === "") {
@@ -106,7 +105,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
         <Product
           isSelected={isSelected}
           name={prod.name}
-          price={prod.price}
+          precio={`Más barato: $ ${
+            prod.precio_d1 > prod.precio_ara
+              ? prod.precio_ara
+              : prod.precio_d1
+          }`}
           img={prod.img1}
           key={prod.id}
           modalFn={() => handleModal(prod)}
@@ -118,7 +121,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
     return (
       <Product
         name={prod.name}
-        price={prod.price}
+        precio={`Mas barato: $ ${
+          prod.precio_d1 > prod.precio_ara
+            ? prod.precio_ara
+            : prod.precio_d1
+        }`}
         img={prod.img1}
         key={prod.id}
         modalFn={() => handleModal(prod)}
@@ -130,27 +137,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   return (
     <>
       <div className="main">
-        <div className="home-container">
-          <Link to={"/"} className="home-button">
-            <i className="fas fa-home"></i>
-          </Link>
-
-          <Link to={"/add"} className="home-button">
-            <i className="fa-solid fa-file-circle-plus"></i>
-          </Link>
-
-          <div className="cates">
-            <span>Categorias </span>
-            <select onChange={(event) => handleCategory(event.target.value)}>
-              <option value="">Todos</option>
-              <option value="bebida">Bebidas</option>
-              <option value="abarrote">Abarrotes</option>
-              <option value="carne">Carnes</option>
-              <option value="mecato">Mecatos</option>
-            </select>
-          </div>
-        </div>
-
+        <ProductsHeader handleCategory={handleCategory} />
         <div className="input-container">
           <input
             type="search"

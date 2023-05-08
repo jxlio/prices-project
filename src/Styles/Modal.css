@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .modal-container {
@@ -32,7 +31,7 @@
   height: 37px;
   margin-bottom: 10px;
   color: black;
-  background-color:#e74c3c;
+  background-color: #e74c3c;
   align-self: flex-end;
   border-radius: 20%;
 }

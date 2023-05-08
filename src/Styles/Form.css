@@ -6,7 +6,7 @@
   margin-right: auto;
 }
 
-.atras{
+.atras {
   background-color: #ffffff;
   border: none;
   border-radius: 30%;
@@ -20,11 +20,11 @@
   padding: 10px;
   margin-left: 20px;
 }
-.atras-cont{
+.atras-cont {
   margin-top: 20px;
 }
 
-.atras:hover{
+.atras:hover {
   background-color: #666666;
   color: #ffffff;
   transform: scale(1.1);
@@ -36,8 +36,6 @@
   font-weight: bold;
   font-family: "Poppins", sans-serif;
   color: rgba(0, 0, 0, 0.8);
-  
-
 }
 
 .formAdd label {
@@ -59,7 +57,7 @@
 }
 
 .formAdd button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-size: 16px;
   font-weight: bold;

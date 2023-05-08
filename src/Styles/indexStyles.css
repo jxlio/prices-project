@@ -4,7 +4,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.main-container{
+.main-container {
   height: 100vh;
 }
 
@@ -39,7 +39,6 @@
 .nav a:hover {
   color: #e5e5e5;
   transition: all 0.3s ease;
- 
 }
 
 .nav-container Link:hover {
@@ -63,15 +62,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0,9);
+  background-color: rgb(0, 0, 0, 0, 9);
   background-image: url("whbl1maf.png");
   background-size: cover;
   background-position: center;
   text-align: center;
   color: #fff;
 }
-
-
 
 .hero h1 {
   align-self: flex-start;
