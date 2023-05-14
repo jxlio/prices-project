@@ -11,7 +11,7 @@ const Cart = ({ cartItems, setCartItems, toggleCart }) => {
       <div className="cart-container">
         <button onClick={toggleCart}> X </button>
         <h2>Shopping Cart</h2>
-        {cartItems.length === 0 && <p>Your cart is empty.</p>}
+        {cartItems.length === 0 && <p>Tu carrito esta vacio!</p>}
         {cartItems.map((item, index) => (
           <div key={index}>
             <p>{item.name}</p>
