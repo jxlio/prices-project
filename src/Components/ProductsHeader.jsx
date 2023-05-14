@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TbShoppingCartPlus } from "react-icons/tb";
 
-const ProductsHeader = ({ handleCategory }) => {
+const ProductsHeader = ({ handleCategory, size, toggleCart}) => {
   return (
     <div className="home-container">
       <Link to={"/"} className="home-button">
@@ -12,8 +13,17 @@ const ProductsHeader = ({ handleCategory }) => {
         <i className="fa-solid fa-file-circle-plus"></i>
       </Link>
 
+    
+
       <div className="cates">
-        <span>Categorias </span>
+      <div className="cart">
+        <span onClick={toggleCart}>
+          {" "}
+          <TbShoppingCartPlus />{" "}
+        </span>
+        <span>{size} </span>
+      </div>
+        <h4>Categorias</h4>
         <select onChange={(event) => handleCategory(event.target.value)}>
           <option value="">Todos</option>
           <option value="bebida">Bebidas</option>

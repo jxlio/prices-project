@@ -249,6 +249,27 @@ selected:hover {
   cursor: pointer;
 }
 
+.addToCart{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  margin: 14px;
+  background-color: darkgray;
+  color: #fff;
+  border: none;
+  padding: 9px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: medium;
+}
+
+.cont-pro:hover .addToCart{
+  display: block;
+}
+
 .cates select {
   appearance: none;
   -webkit-appearance: none;
@@ -311,6 +332,8 @@ selected:hover {
     font-size: 14px;
   }
 }
+
+
 
 @media screen and (min-width: 768px) {
   .products-container {

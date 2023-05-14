@@ -13,7 +13,6 @@ const FormAddProd = ({ producto, setProducto }) => {
     img1: "",
     precio_ara: "",
     precio_d1: "",
-    
   });
 
   function handleChange(event) {
@@ -26,7 +25,7 @@ const FormAddProd = ({ producto, setProducto }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const fd = new FormData();
     fd.append("name", form.name);
     fd.append("category", form.category);
@@ -35,18 +34,17 @@ const FormAddProd = ({ producto, setProducto }) => {
     fd.append("img1", form.img1);
     fd.append("precio_ara", form.precio_ara);
     fd.append("precio_d1", form.precio_d1);
-    
-  
+
     fetch("http://localhost/products/index.php", {
       method: "POST",
       body: fd,
     })
       .then((response) => response.json())
       .then((newProduct) => {
-        setProducto(prevState => [...prevState, newProduct]);
+        setProducto((prevState) => [...prevState, newProduct]);
         setForm({
           name: "",
-          category:"",
+          category: "",
           description: "",
           quantity: "",
           img1: "",
@@ -64,7 +62,6 @@ const FormAddProd = ({ producto, setProducto }) => {
         console.error(error);
       });
   };
-  
 
   return (
     <>
@@ -94,9 +91,9 @@ const FormAddProd = ({ producto, setProducto }) => {
 
         <label htmlFor="category">
           {" "}
-           Categoria{" "}
+          Categoria{" "}
           <input
-          placeholder="por favor ingresa la categoria en minusculas. ej: abarrote, bebida "
+            placeholder="por favor ingresa la categoria en minusculas. ej: abarrote, bebida "
             type="text"
             name="category"
             value={form.category}

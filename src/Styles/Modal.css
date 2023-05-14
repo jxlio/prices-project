@@ -23,13 +23,13 @@
   align-items: center;
   padding: 25px;
   position: relative;
-  z-index: 1000;
+  z-index: 1000; 
 }
+
 
 .modal-container button {
   width: 30px;
-  height: 37px;
-  margin-bottom: 10px;
+  height: 35px;
   color: black;
   background-color: #e74c3c;
   align-self: flex-end;

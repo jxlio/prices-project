@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
 import InfoPage from "../Components/InfoPage";
 import ProductsHeader from "../Components/ProductsHeader";
+import Cart from "../Components/Cart";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -12,6 +13,27 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [noProduct, setNoProduct] = useState(false);
+
+  const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
+  const ToggleCart = () => {
+    setShowCart(!showCart);
+  };
+
+  const handleClick = (prod) => {
+    const index = cart.findIndex((item) => item.name === prod.name);
+    if (index === -1) {
+      setCart([
+        ...cart,
+        { name: prod.name, precio: prod.precio, img: prod.img1, quantity: 1 },
+      ]);
+    } else {
+      const updatedCart = [...cart];
+      updatedCart[index].quantity += 1;
+      setCart(updatedCart);
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost/products/index.php")
@@ -105,15 +127,14 @@ const ProdsPrices = ({ setProducto, producto }) => {
         <Product
           isSelected={isSelected}
           name={prod.name}
-          precio={`Más barato: $ ${
-            prod.precio_d1 > prod.precio_ara
-              ? prod.precio_ara
-              : prod.precio_d1
+          precio={`Más barato: $${
+            prod.precio_d1 > prod.precio_ara ? prod.precio_ara : prod.precio_d1
           }`}
           img={prod.img1}
           key={prod.id}
           modalFn={() => handleModal(prod)}
           del={() => handleDelete(prod.id)}
+          addTo={() => handleClick(prod)}
         />
       );
     }
@@ -121,15 +142,14 @@ const ProdsPrices = ({ setProducto, producto }) => {
     return (
       <Product
         name={prod.name}
-        precio={`Mas barato: $ ${
-          prod.precio_d1 > prod.precio_ara
-            ? prod.precio_ara
-            : prod.precio_d1
+        precio={`Mas barato: $${
+          prod.precio_d1 > prod.precio_ara ? prod.precio_ara : prod.precio_d1
         }`}
         img={prod.img1}
         key={prod.id}
         modalFn={() => handleModal(prod)}
         del={() => handleDelete(prod.id)}
+        addTo={() => handleClick(prod)}
       />
     );
   });
@@ -137,7 +157,11 @@ const ProdsPrices = ({ setProducto, producto }) => {
   return (
     <>
       <div className="main">
-        <ProductsHeader handleCategory={handleCategory} />
+        <ProductsHeader
+          handleCategory={handleCategory}
+          toggleCart={ToggleCart}
+          size={cart.length}
+        />
         <div className="input-container">
           <input
             type="search"
@@ -149,6 +173,13 @@ const ProdsPrices = ({ setProducto, producto }) => {
         {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
 
         <section className="products-container "> {map}</section>
+        {showCart && (
+          <Cart
+            cartItems={cart}
+            setCartItems={setCart}
+            toggleCart={ToggleCart}
+          />
+        )}
         {openModal && (
           <InfoModal close={CloseModal}>
             {" "}
