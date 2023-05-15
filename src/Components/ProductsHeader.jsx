@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { TbShoppingCartPlus } from "react-icons/tb";
 
+
 const ProductsHeader = ({ handleCategory, size, toggleCart}) => {
   return (
     <div className="home-container">
@@ -21,7 +22,7 @@ const ProductsHeader = ({ handleCategory, size, toggleCart}) => {
           {" "}
           <TbShoppingCartPlus  className="cart-icon" />{" "}
         </span>
-        <span>{size} </span>
+        <strong>{size} </strong>
       </div>
         <h4>Categorias</h4>
         <select onChange={(event) => handleCategory(event.target.value)}>

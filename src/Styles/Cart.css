@@ -53,17 +53,22 @@
 .cart-item-name {
   font-weight: bold;
   font-family: "Poppins", sans-serif;
+  
 
 }
 
 .cart-item-price {
   margin-bottom: 5px;
+  margin-top: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   
 }
 
 .cart-item-quantity {
   display: flex;
   align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 10px;
 }
 
 .cart-item-quantity-label {
@@ -102,4 +107,9 @@
   background-color: darkred;
   cursor: pointer;
 
+}
+
+.totals{
+  margin-top: 30px;
+  font-weight: bold;
 }

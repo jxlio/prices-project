@@ -13,7 +13,7 @@ const Cart = ({
   };
 
   const montoTotalD1 = formatPrice(
-    cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
+   cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
   );
 
   const montoTotalAra = formatPrice(
@@ -37,27 +37,27 @@ const Cart = ({
             <div className="cart-item-details">
               <p className="cart-item-name">{item.name}</p>
               <p className="cart-item-price">
-                Precio ARA: {formatPrice(item.precio_ara * item.quantity)}
+              <strong>Precio ARA:  </strong>{formatPrice(item.precio_ara * item.quantity)}
               </p>
               <p className="cart-item-price">
-                Precio D1: {formatPrice(item.precio_d1 * item.quantity)}
+                <strong>Precio D1:  </strong>{formatPrice(item.precio_d1 * item.quantity)}
               </p>
               <div className="cart-item-quantity">
-                <span className="cart-item-quantity-label">Cantidad:</span>
+                <strong className="cart-item-quantity-label">Cantidad:</strong>
                 {item.quantity}
               </div>
             </div>
             <div className="cart-item-actions">
               <button onClick={() => plus(item)}>+</button>
               <button onClick={() => minus(item)}>-</button>
-              <button onClick={() => handleRemoveItem(index)}>Remove</button>
+              <button onClick={() => handleRemoveItem(index)}>Borrar</button>
             </div>
           </div>
         ))}
         {cartItems.length > 0 && (
-          <div>
-            <p>Monto Total D1: {montoTotalD1} </p>
+          <div className="totals">
             <p>Monto Total ARA: {montoTotalAra} </p>
+            <p>Monto Total D1: {montoTotalD1} </p>
           </div>
         )}
       </div>

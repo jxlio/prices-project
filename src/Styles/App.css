@@ -336,8 +336,13 @@ selected:hover {
 .cart-icon{
   font-size: 37px;
   margin-right: 4px;
+  cursor: pointer;
 }
 
+.cart-icon:hover{
+  transform: scale(1.07);
+  color: rebeccapurple;
+}
 
 
 @media screen and (min-width: 768px) {

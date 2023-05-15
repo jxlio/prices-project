@@ -7,6 +7,7 @@ import ProductsHeader from "../Components/ProductsHeader";
 import Cart from "../Components/Cart";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import Navbar from "../Components/Navbar";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -220,7 +221,9 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   return (
     <>
+      
       <div className="main">
+       
         <ProductsHeader
           handleCategory={handleCategory}
           toggleCart={ToggleCart}
