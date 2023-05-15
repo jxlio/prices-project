@@ -1,11 +1,27 @@
 import "../Styles/Cart.css";
 
-const Cart = ({ cartItems, setCartItems, toggleCart, plus, minus, formatPrice }) => {
+const Cart = ({
+  cartItems,
+  setCartItems,
+  toggleCart,
+  plus,
+  minus,
+  formatPrice,
+}) => {
   const handleRemoveItem = (index) => {
     setCartItems(cartItems.filter((item, i) => i !== index));
   };
 
- 
+  const montoTotalD1 = formatPrice(
+    cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
+  );
+
+  const montoTotalAra = formatPrice(
+    cartItems.reduce(
+      (total, item) => total + item.precio_ara * item.quantity,
+      0
+    )
+  );
 
   return (
     <div className="back-modal">
@@ -13,8 +29,8 @@ const Cart = ({ cartItems, setCartItems, toggleCart, plus, minus, formatPrice })
         <button className="close-cart" onClick={toggleCart}>
           X
         </button>
-        <h2>Shopping Cart</h2>
-        {cartItems.length === 0 && <p>Tu carrito está vacío!</p>}
+        <h2>Carrito de compras</h2>
+        {cartItems.length === 0 && <p>No hay nada en tu carrito o.O!</p>}
         {cartItems.map((item, index) => (
           <div className="cart-item" key={index}>
             <img src={item.img} alt="" />
@@ -38,23 +54,12 @@ const Cart = ({ cartItems, setCartItems, toggleCart, plus, minus, formatPrice })
             </div>
           </div>
         ))}
-        <div>
-          Monto total D1:{" "}
-          {formatPrice(
-            cartItems.reduce(
-              (total, item) => total + item.precio_d1 * item.quantity,
-              0
-            )
-          )}
-          <br />
-          Monto total ARA:{" "}
-          {formatPrice(
-            cartItems.reduce(
-              (total, item) => total + item.precio_ara * item.quantity,
-              0
-            )
-          )}
-        </div>
+        {cartItems.length > 0 && (
+          <div>
+            <p>Monto Total D1: {montoTotalD1} </p>
+            <p>Monto Total ARA: {montoTotalAra} </p>
+          </div>
+        )}
       </div>
     </div>
   );
