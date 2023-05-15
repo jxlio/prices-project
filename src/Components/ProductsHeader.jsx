@@ -19,7 +19,7 @@ const ProductsHeader = ({ handleCategory, size, toggleCart}) => {
       <div className="cart">
         <span onClick={toggleCart}>
           {" "}
-          <TbShoppingCartPlus />{" "}
+          <TbShoppingCartPlus  className="cart-icon" />{" "}
         </span>
         <span>{size} </span>
       </div>

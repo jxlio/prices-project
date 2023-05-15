@@ -1,11 +1,12 @@
 import Product from "../Components/Product";
 import { useState, useEffect } from "react";
 import "../Styles/App.css";
-import { Link } from "react-router-dom";
 import InfoModal from "../Components/InfoModal";
 import InfoPage from "../Components/InfoPage";
 import ProductsHeader from "../Components/ProductsHeader";
 import Cart from "../Components/Cart";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -26,13 +27,57 @@ const ProdsPrices = ({ setProducto, producto }) => {
     if (index === -1) {
       setCart([
         ...cart,
-        { name: prod.name, precio: prod.precio, img: prod.img1, quantity: 1 },
+        {
+          name: prod.name,
+          precio_ara: prod.precio_ara,
+          precio_d1: prod.precio_d1,
+          img: prod.img1,
+          quantity: 1,
+        },
       ]);
+      toast.success("Producto agregado al carrito", {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "colored",
+      });
     } else {
       const updatedCart = [...cart];
       updatedCart[index].quantity += 1;
       setCart(updatedCart);
+      toast.error("Este producto ya esta en el carrito, su cantidad aumentó!", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "colored",
+      });
     }
+  };
+
+  const AddQuant = (prod) => {
+    const updatedCart = cart.map((item) => {
+      if (item.name === prod.name) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+
+    setCart(updatedCart);
+  };
+
+  const minusQuant = (prod) => {
+    const updatedCart = cart.map((item) => {
+      if (item.name === prod.name && item.quantity >= 2) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+
+    setCart(updatedCart);
   };
 
   useEffect(() => {
@@ -100,6 +145,22 @@ const ProdsPrices = ({ setProducto, producto }) => {
     }
   };
 
+  const formatPrice = (price) => {
+    const formattedPrice = price.toLocaleString("es-CO", {
+      style: "currency",
+      currency: "COP",
+    });
+  
+    const decimalIndex = formattedPrice.indexOf(".");
+    if (decimalIndex !== -1) {
+      const priceWithoutTrailingZeros = formattedPrice.slice(0, decimalIndex + 4);
+      return priceWithoutTrailingZeros;
+    }
+  
+    return formattedPrice;
+  };
+  
+
   const filtro = (busqueda) => {
     const result = originalProduct.filter(
       (produ) =>
@@ -122,14 +183,19 @@ const ProdsPrices = ({ setProducto, producto }) => {
   };
 
   const map = producto.map((prod) => {
-    if (prod == selectedProduct) {
+    const priceD1 = parseFloat(prod.precio_d1);
+    const priceAra = parseFloat(prod.precio_ara);
+    const formattedPriceD1 = formatPrice(priceD1);
+    const formattedPriceAra = formatPrice(priceAra);
+    const formattedPrice =
+      priceD1 > priceAra ? formattedPriceAra : formattedPriceD1;
+
+    if (prod === selectedProduct) {
       return (
         <Product
           isSelected={isSelected}
           name={prod.name}
-          precio={`Más barato: $${
-            prod.precio_d1 > prod.precio_ara ? prod.precio_ara : prod.precio_d1
-          }`}
+          precio={`Mas barato: ${formattedPrice}`}
           img={prod.img1}
           key={prod.id}
           modalFn={() => handleModal(prod)}
@@ -142,9 +208,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
     return (
       <Product
         name={prod.name}
-        precio={`Mas barato: $${
-          prod.precio_d1 > prod.precio_ara ? prod.precio_ara : prod.precio_d1
-        }`}
+        precio={`Mas barato: ${formattedPrice}`}
         img={prod.img1}
         key={prod.id}
         modalFn={() => handleModal(prod)}
@@ -173,17 +237,24 @@ const ProdsPrices = ({ setProducto, producto }) => {
         {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
 
         <section className="products-container "> {map}</section>
+        <ToastContainer />
         {showCart && (
           <Cart
             cartItems={cart}
             setCartItems={setCart}
             toggleCart={ToggleCart}
+            plus={AddQuant}
+            minus={minusQuant}
+            formatPrice={formatPrice}
           />
         )}
         {openModal && (
           <InfoModal close={CloseModal}>
             {" "}
-            <InfoPage selectedProduct={selectedProduct} />{" "}
+            <InfoPage
+              selectedProduct={selectedProduct}
+              formatPrice={formatPrice}
+            />{" "}
           </InfoModal>
         )}
       </div>
