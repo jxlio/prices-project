@@ -37,7 +37,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
       ]);
       toast.success("Producto agregado al carrito", {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 1000,
         theme: "colored",
       });
     } else {

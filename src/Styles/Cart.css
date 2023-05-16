@@ -96,6 +96,7 @@
   background-color: #e74c3c;
   align-self: flex-end;
   border-radius: 20%;
+  position: fixed;
 }
 
 .close-cart:hover {

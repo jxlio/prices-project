@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/indexStyles.css";
+import logo from "../assets/shoping logo.1je.png"
 
 const Navbar = () => {
   return (
@@ -8,7 +9,7 @@ const Navbar = () => {
       <header className="nav-container">
         <nav className="nav">
           <Link className="logo" to={"/products"}>
-            Logo
+            <img src={logo} alt="" height={90}  width={160}/>
           </Link>
           <Link>Sobre Nosotros</Link>
           <Link>Contacto</Link>

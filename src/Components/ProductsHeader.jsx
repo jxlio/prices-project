@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { FiShoppingCart } from "react-icons/fi";
+import logo from "../assets/shoping logo.1je.png";
 
 const ProductsHeader = ({ handleCategory, size, toggleCart }) => {
   return (
@@ -14,7 +15,10 @@ const ProductsHeader = ({ handleCategory, size, toggleCart }) => {
         <i className="fa-solid fa-file-circle-plus"></i>
       </Link>
 
+      <img className="logo" src={logo} alt="" width={200} height={80}/>
+
       <div className="cates">
+        
         <div className="cart">
           <span onClick={toggleCart}>
             {" "}

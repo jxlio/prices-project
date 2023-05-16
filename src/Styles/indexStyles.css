@@ -33,7 +33,7 @@
   margin: 0 14px;
   transition: all 0.3s ease-in-out;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid white;
+ 
 }
 
 .nav a:hover {
@@ -42,8 +42,8 @@
 }
 
 .nav .logo {
-  font-size: 24px;
-  font-weight: bold;
+ 
+ margin-top: 30px;
   margin-right: auto;
   display: flex;
   justify-content: center;

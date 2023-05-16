@@ -18,7 +18,7 @@ const InfoPage = ({ selectedProduct, formatPrice }) => {
 
       <span>{` Precio D1:  ${formattedPriceD1}`} </span>
       <span>{` Precio Ara:  ${formattedPriceAra}`} </span>
-      <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
+
     </div>
   );
 };
