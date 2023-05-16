@@ -28,10 +28,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.mas-barato{
+.mas-barato {
   margin-top: 10px;
   font-size: 17px;
-  font-family: Arial, Helvetica, sans-serif ;
+  font-family: Arial, Helvetica, sans-serif;
   color: #e74c3c;
 }
 
@@ -249,7 +249,7 @@ selected:hover {
   cursor: pointer;
 }
 
-.addToCart{
+.addToCart {
   display: none;
   position: absolute;
   top: 0;
@@ -266,7 +266,7 @@ selected:hover {
   font-size: medium;
 }
 
-.cont-pro:hover .addToCart{
+.cont-pro:hover .addToCart {
   display: block;
 }
 
@@ -333,17 +333,16 @@ selected:hover {
   }
 }
 
-.cart-icon{
-  font-size: 37px;
+.cart-icon {
+  font-size: 32px;
   margin-right: 4px;
   cursor: pointer;
 }
 
-.cart-icon:hover{
+.cart-icon:hover {
   transform: scale(1.07);
   color: rebeccapurple;
 }
-
 
 @media screen and (min-width: 768px) {
   .products-container {

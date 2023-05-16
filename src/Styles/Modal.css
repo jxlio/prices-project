@@ -23,9 +23,8 @@
   align-items: center;
   padding: 25px;
   position: relative;
-  z-index: 1000; 
+  z-index: 1000;
 }
-
 
 .modal-container button {
   width: 30px;

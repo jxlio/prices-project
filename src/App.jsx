@@ -6,7 +6,6 @@ import AddProduct from "./pages/AddProduct.jsx";
 
 function App() {
   const [producto, setProducto] = useState([]);
-  
 
   return (
     <Routes>

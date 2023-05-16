@@ -1,6 +1,6 @@
-import {TbShoppingCartPlus} from "react-icons/tb"
+import { TbShoppingCartPlus } from "react-icons/tb";
 
-const Product = ({ img, name, isSelected, modalFn, del, precio, addTo}) => {
+const Product = ({ img, name, isSelected, modalFn, del, precio, addTo }) => {
   return (
     <div className={`cont-pro ${isSelected ? "selected" : ""}`}>
       <button className="delete" onClick={del}>
@@ -8,15 +8,14 @@ const Product = ({ img, name, isSelected, modalFn, del, precio, addTo}) => {
       </button>
 
       <button className="addToCart" onClick={addTo}>
-          <TbShoppingCartPlus/>
+        <TbShoppingCartPlus />
       </button>
-      
+
       <div className="contenido" onClick={modalFn}>
         <img src={img} alt="" />
-        <h4> {name} </h4> 
+        <h4> {name} </h4>
         <span className="mas-barato">{precio}</span>
       </div>
-    
     </div>
   );
 };

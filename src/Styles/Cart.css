@@ -28,14 +28,12 @@
   text-align: center;
   margin-bottom: 20px;
   font-family: "Poppins", sans-serif;
-
 }
 
 .cart-item {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  
 }
 
 .cart-item img {
@@ -53,21 +51,18 @@
 .cart-item-name {
   font-weight: bold;
   font-family: "Poppins", sans-serif;
-  
-
 }
 
 .cart-item-price {
   margin-bottom: 5px;
   margin-top: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cart-item-quantity {
   display: flex;
   align-items: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 10px;
 }
 
@@ -106,10 +101,9 @@
 .close-cart:hover {
   background-color: darkred;
   cursor: pointer;
-
 }
 
-.totals{
+.totals {
   margin-top: 30px;
   font-weight: bold;
 }

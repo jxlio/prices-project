@@ -16,7 +16,7 @@ const InfoPage = ({ selectedProduct, formatPrice }) => {
         <img src={selectedProduct.img1} alt="" />
       </section>
 
-      <span>{` Precio D1:  ${formattedPriceD1 }`} </span>
+      <span>{` Precio D1:  ${formattedPriceD1}`} </span>
       <span>{` Precio Ara:  ${formattedPriceAra}`} </span>
       <span>{` Cantidad:  ${selectedProduct.quantity}`} </span>
     </div>

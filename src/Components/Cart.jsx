@@ -13,7 +13,7 @@ const Cart = ({
   };
 
   const montoTotalD1 = formatPrice(
-   cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
+    cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
   );
 
   const montoTotalAra = formatPrice(
@@ -37,10 +37,12 @@ const Cart = ({
             <div className="cart-item-details">
               <p className="cart-item-name">{item.name}</p>
               <p className="cart-item-price">
-              <strong>Precio ARA:  </strong>{formatPrice(item.precio_ara * item.quantity)}
+                <strong>Precio ARA: </strong>
+                {formatPrice(item.precio_ara * item.quantity)}
               </p>
               <p className="cart-item-price">
-                <strong>Precio D1:  </strong>{formatPrice(item.precio_d1 * item.quantity)}
+                <strong>Precio D1: </strong>
+                {formatPrice(item.precio_d1 * item.quantity)}
               </p>
               <div className="cart-item-quantity">
                 <strong className="cart-item-quantity-label">Cantidad:</strong>

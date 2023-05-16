@@ -8,7 +8,7 @@ import Navbar from "../Components/Navbar";
 const Index = () => {
   return (
     <div className="main-container">
-      <Navbar/>
+      <Navbar />
       <section className="hero">
         <section className="info-cont">
           <h1>ComparaYa!</h1>
