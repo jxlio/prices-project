@@ -22,7 +22,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setShowCart(!showCart);
   };
 
-  const handleClick = (prod) => {
+  const handleCart = (prod) => {
     const index = cart.findIndex((item) => item.name === prod.name);
     if (index === -1) {
       setCart([
@@ -136,14 +136,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setSelectedProduct(prod);
   };
 
-  const handleChange = (event) => {
-    const resultado = event.target.value.trim().toLowerCase();
-    if (resultado === "") {
-      setProducto(originalProduct);
-    } else {
-      filtro(resultado);
-    }
-  };
 
   const formatPrice = (price) => {
     const formattedPrice = price.toLocaleString("es-CO", {
@@ -162,6 +154,17 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
     return formattedPrice;
   };
+
+  const handleChange = (event) => {
+    const resultado = event.target.value.trim().toLowerCase();
+    if (resultado === "") {
+      setProducto(originalProduct);
+    } else {
+      filtro(resultado);
+    }
+  };
+
+  
 
   const filtro = (busqueda) => {
     const result = originalProduct.filter(
@@ -202,7 +205,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           key={prod.id}
           modalFn={() => handleModal(prod)}
           del={() => handleDelete(prod.id)}
-          addTo={() => handleClick(prod)}
+          addTo={() => handleCart(prod)}
         />
       );
     }
@@ -215,7 +218,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         key={prod.id}
         modalFn={() => handleModal(prod)}
         del={() => handleDelete(prod.id)}
-        addTo={() => handleClick(prod)}
+        addTo={() => handleCart(prod)}
       />
     );
   });
