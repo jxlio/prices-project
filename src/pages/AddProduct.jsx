@@ -9,7 +9,6 @@ const FormAddProd = ({ producto, setProducto }) => {
     name: "",
     category: "",
     description: "",
-    quantity: "",
     img1: "",
     precio_ara: "",
     precio_d1: "",
@@ -30,7 +29,6 @@ const FormAddProd = ({ producto, setProducto }) => {
     fd.append("name", form.name);
     fd.append("category", form.category);
     fd.append("description", form.description);
-    fd.append("quantity", form.quantity);
     fd.append("img1", form.img1);
     fd.append("precio_ara", form.precio_ara);
     fd.append("precio_d1", form.precio_d1);
@@ -97,19 +95,6 @@ const FormAddProd = ({ producto, setProducto }) => {
             type="text"
             name="category"
             value={form.category}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-        <label htmlFor="quantity">
-          Cantidad
-          <input
-            type="number"
-            min={1}
-            max={9999}
-            name="quantity"
-            value={form.quantity}
             onChange={handleChange}
             required
           />
