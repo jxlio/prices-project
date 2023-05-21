@@ -136,7 +136,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setSelectedProduct(prod);
   };
 
-
   const formatPrice = (price) => {
     const formattedPrice = price.toLocaleString("es-CO", {
       style: "currency",
@@ -163,8 +162,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
       filtro(resultado);
     }
   };
-
-  
 
   const filtro = (busqueda) => {
     const result = originalProduct.filter(

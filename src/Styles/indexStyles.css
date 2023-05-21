@@ -57,8 +57,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(0, 0, 0, 0, 9);
-  background-image: url("whbl1maf.png");
+  background-color:grey;
   background-size: cover;
   background-position: center;
   text-align: center;
