@@ -1,15 +1,35 @@
 import { TbShoppingCartPlus } from "react-icons/tb";
-
-const Product = ({ img, name, isSelected, modalFn, del, precio, addTo }) => {
+import { BsCartCheckFill } from "react-icons/bs";
+import Tooltip from "@mui/material/tooltip";
+const Product = ({
+  img,
+  name,
+  isSelected,
+  modalFn,
+  del,
+  precio,
+  addTo,
+  cart,
+}) => {
   return (
     <div className={`cont-pro ${isSelected ? "selected" : ""}`}>
       <button className="delete" onClick={del}>
         <i className="fa-solid fa-trash-can"></i>
       </button>
 
-      <button className="addToCart" onClick={addTo}>
-        <TbShoppingCartPlus />
-      </button>
+      {cart ? (
+        <Tooltip title="Producto ya en el carrito" arrow >
+          <button className="addToCart inCart" onClick={addTo}>
+            <BsCartCheckFill />{" "}
+          </button>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Agregar producto al carrito" arrow>
+          <button className="addToCart " onClick={addTo}>
+            <TbShoppingCartPlus />
+          </button>
+        </Tooltip>
+      )}
 
       <div className="contenido" onClick={modalFn}>
         <img src={img} alt="" />

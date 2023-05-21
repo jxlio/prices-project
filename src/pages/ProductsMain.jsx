@@ -33,6 +33,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           precio_d1: prod.precio_d1,
           img: prod.img1,
           quantity: 1,
+          id: prod.id,
         },
       ]);
       toast.success("Producto agregado al carrito", {
@@ -40,15 +41,17 @@ const ProdsPrices = ({ setProducto, producto }) => {
         autoClose: 1000,
         theme: "colored",
       });
+      setIsSelected(false);
     } else {
-      const updatedCart = [...cart];
-      updatedCart[index].quantity += 1;
+      const updatedCart = cart.filter((item)=> item.id !== prod.id)
+      setCart(updatedCart)
       setCart(updatedCart);
-      toast.error("Este producto ya esta en el carrito, su cantidad aumentó!", {
+      toast.error("Producto eliminado del carrito", {
         position: "top-center",
         autoClose: 3000,
         theme: "colored",
       });
+      setIsSelected(true);
     }
   };
 
@@ -78,6 +81,10 @@ const ProdsPrices = ({ setProducto, producto }) => {
     });
 
     setCart(updatedCart);
+  };
+
+  const itemInCard = (prod) => {
+    return cart.some((item) => item.id == prod.id);
   };
 
   useEffect(() => {
@@ -191,6 +198,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
     const formattedPriceAra = formatPrice(priceAra);
     const formattedPrice =
       priceD1 > priceAra ? formattedPriceAra : formattedPriceD1;
+    const checkedInCart = itemInCard(prod);
+    console.log(checkedInCart);
 
     if (prod === selectedProduct) {
       return (
@@ -203,10 +212,10 @@ const ProdsPrices = ({ setProducto, producto }) => {
           modalFn={() => handleModal(prod)}
           del={() => handleDelete(prod.id)}
           addTo={() => handleCart(prod)}
+          cart={itemInCard(prod)}
         />
       );
     }
-
     return (
       <Product
         name={prod.name}
@@ -216,6 +225,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         modalFn={() => handleModal(prod)}
         del={() => handleDelete(prod.id)}
         addTo={() => handleCart(prod)}
+        cart={itemInCard(prod)}
       />
     );
   });
