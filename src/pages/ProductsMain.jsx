@@ -1,12 +1,13 @@
 import Product from "../Components/Product";
-import { useState, useEffect } from "react";
-import "../Styles/App.css";
+import { useState, useEffect, useContext } from "react";
+import "../Styles/ProductosPage.css";
 import InfoModal from "../Components/InfoModal";
 import InfoPage from "../Components/InfoPage";
 import ProductsHeader from "../Components/ProductsHeader";
 import Cart from "../Components/Cart";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { DarkMode } from "../context/darkMode";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -14,6 +15,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [noProduct, setNoProduct] = useState(false);
+
+  const [dark, setDark] = useContext(DarkMode)
 
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -232,7 +235,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   return (
     <>
-      <div className="main">
+      <div className="main" style={{ backgroundColor: dark ? 'black' : 'white' }}>
         <ProductsHeader
           handleCategory={handleCategory}
           toggleCart={ToggleCart}
