@@ -1,136 +1,232 @@
-* {
-  margin: 0%;
-  padding: 0%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.body{
+  margin: 0;
+  
+ 
 }
 
-.main-container {
-  height: 100vh;
+*{
+  box-sizing: border-box;
+  
 }
 
-.nav-container {
-  width: 100%;
-  height: 65px;
-  position: fixed;
-  top: 0;
-  left: 0;
+h1{
+font-size: 3em;
+}
+h2{
+  font-size: 2.7em;
 }
 
-.nav {
+p{
+  font-size: 1.2rem;
+}
+
+button{
+  background-color: #170247;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid rgba(0,0,0,0.5) ;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  color: #e4e1e7;
+}
+
+.container{
+  max-width: 1400px;
+  background-color: #fffcf7;
+}
+
+header{
+  background-color: #fffcf7;
+}
+
+.logo{
+  margin: 0;
+  padding: 24px 30px;
+}
+
+
+header .container-nav{
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
-  height: 100%;
-  padding: 0 20px;
 }
 
-.nav a {
+header nav{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-bottom: 24px;
+}
+
+header a{
+  padding: 4px 12px;
   text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
   font-weight: bold;
-  font-family: "Poppins", sans-serif;
-  margin: 0 14px;
-  transition: all 0.3s ease-in-out;
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
- 
+  color: #170247;
 }
 
-.nav a:hover {
-  color: #e5e5e5;
-  transition: all 0.3s ease;
+header a:hover{
+  color: blueviolet;
 }
 
-.nav .logo {
- 
- margin-top: 30px;
-  margin-right: auto;
+.hero{
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-
-.hero {
-  width: 100%;
-  height: 100%;
-  display: flex;
+  justify-content: center;
+  text-align: center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color:grey;
+  height: 90vh;
+  color:#170247; background-color: #fffcf7;
+}
+
+.hero h1{
+  margin-bottom: 20px;
+}
+
+.hero button{
+  margin-top: 30px;
+}
+
+
+.somos-compara .container-somos{
+  text-align: center;
+  padding: 200px 12px;
+}
+
+.distribuidoras{
+  background-color: #fffcf7;;
+  text-align: center;
+}
+
+.distribuidoras .distri-container{
+  padding: 140px 10px;
+}
+
+.distribuidoras h2{
+  margin-top: 0;
+}
+
+.distribuidoras .carta{
+  background-position: center center;
   background-size: cover;
-  background-position: center;
-  text-align: center;
-  color: #fff;
+  padding: 49px 0px;
+  margin: 30px;
+  border-radius: 14px;
+  color: white;
 }
 
-.hero h1 {
-  align-self: flex-start;
-  font-size: 4rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+
+
+.carta:first-child{
+  background-image:linear-gradient(0deg,
+  rgba(0,0,0,0.5),
+  rgba(0,0,0,0.5)
+  )
+  , url("https://upload.wikimedia.org/wikipedia/commons/a/ad/D1_Cuc_my_2021.jpg");
 }
 
-.hero p {
-  align-self: flex-start;
-  font-size: 1.5rem;
-  font-family: "Poppins", sans-serif;
-  margin-bottom: 3rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+.carta:nth-child(2){
+  background-image:linear-gradient(0deg,
+  rgba(0,0,0,0.5),
+  rgba(0,0,0,0.5)
+  )
+  , url("https://cloudfront-us-east-1.images.arcpublishing.com/semana/XS75NJXNPNCL7J636PVYSAX3C4.jpg");
 }
 
-.hero button {
-  background-color: #fff;
-  color: #1f1f24;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.carta:nth-child(3){
+  background-image:linear-gradient(0deg,
+  rgba(0,0,0,0.5),
+  rgba(0,0,0,0.5)
+  )
+  , url("https://coopcrucial.com/wp-content/uploads/2020/11/almacenes-exito.jpg");
 }
 
-.hero button:hover {
-  background-color: #1f1f24;
-  color: #fff;
+footer{
+  background-color: rgb(245, 245, 245);
 }
 
-footer {
-  background-color: #1f1f24;
-  color: #fff;
-  padding: 30px 0;
-  font-size: 16px;
+footer p{
+  margin:  0;
+  font-size: 1rem;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.footer .footer-container{
+  height: 140px;
   display: flex;
   justify-content: center;
-}
-.footer-bottom {
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
+  align-items: center;
 }
 
-.info-cont {
-  width: 38%;
-  margin-top: 20px;
-  align-self: flex-start;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-left: 49px;
-  text-align: justify;
-}
 
-.info-cont Link button {
-  align-self: center;
-  justify-self: center;
+@media (min-width: 720px){
+
+  header{
+    position: fixed;
+    width: 100%;
+  }
+  header .container-nav{
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+
+  header nav{
+    flex-direction: row;
+    padding-bottom: 0;
+    padding-right: 20px;
+  }
+
+  .hero h1{
+    font-size: 3.4em;
+  }
+
+  .somos-compara .container-somos{
+    display: flex;
+    justify-content: center;
+  
+  }
+
+ .somos-compara .texto{
+        width: 50%;
+        max-width: 600px;
+        text-align: initial;
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  .somos-compara h2{
+    margin-top: 0 ;
+  }
+
+  .container-somos .img-cont{
+    background-image: linear-gradient(0deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4))
+    , url("https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80");
+    background-size: cover;
+    background-position: center center;
+    height: 499px;
+    width: 400px;
+  }
+
+  .distribuidoras .dis{
+    display: flex;
+    justify-content: center;
+  }
+
+  .distribuidoras h3{
+    margin-top: 0 ;
+    margin-bottom: 30px;
+  }
+
+
+  .distribuidoras .carta{
+    padding: 120px;
+  }
+
+  footer .footer-container{
+    text-align: center;
+  }
+
+
 }

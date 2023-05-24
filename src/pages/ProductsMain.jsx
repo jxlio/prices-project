@@ -43,8 +43,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
       });
       setIsSelected(false);
     } else {
-      const updatedCart = cart.filter((item)=> item.id !== prod.id)
-      setCart(updatedCart)
+      const updatedCart = cart.filter((item) => item.id !== prod.id);
+      setCart(updatedCart);
       setCart(updatedCart);
       toast.error("Producto eliminado del carrito", {
         position: "top-center",
