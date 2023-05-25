@@ -1,13 +1,14 @@
 import Product from "../Components/Product";
 import { useState, useEffect, useContext } from "react";
-import "../Styles/ProductosPage.css";
+import "../Styles/Main.css";
 import InfoModal from "../Components/InfoModal";
 import InfoPage from "../Components/InfoPage";
-import ProductsHeader from "../Components/ProductsHeader";
+import ProductsHeader from "../Components/Sidebar";
 import Cart from "../Components/Cart";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { DarkMode } from "../context/darkMode";
+import Sidebar from "../Components/Sidebar";
 
 const ProdsPrices = ({ setProducto, producto }) => {
   const [selectedProduct, setSelectedProduct] = useState();
@@ -16,10 +17,12 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [openModal, setOpenModal] = useState(false);
   const [noProduct, setNoProduct] = useState(false);
 
-  const [dark, setDark] = useContext(DarkMode)
+  const [dark, setDark] = useContext(DarkMode);
 
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+
+  const [navVisible, showNavbar] = useState(false);
 
   const ToggleCart = () => {
     setShowCart(!showCart);
@@ -120,6 +123,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         if (categorico.length === 0) {
           setNoProduct(true);
           setProducto([]);
+          setOriginalProduct([]);
         } else {
           setNoProduct(false);
           setProducto(categorico);
@@ -234,25 +238,18 @@ const ProdsPrices = ({ setProducto, producto }) => {
   });
 
   return (
-    <>
-      <div className="main" style={{ backgroundColor: dark ? 'black' : 'white' }}>
-        <ProductsHeader
-          handleCategory={handleCategory}
-          toggleCart={ToggleCart}
-          size={cart.length}
-        />
-        <div className="input-container">
-          <input
-            type="search"
-            placeholder="Busca un producto..."
-            onChange={handleChange}
-          />
+    <div className="main" style={{ backgroundColor: dark && "#202124 " }}>
+      <Sidebar handleCates={handleCategory} handleInput={handleChange} toggleCart={ToggleCart} size={cart.length} />
+
+      {noProduct && (
+        <div className="no-ava-cont">
+          {" "}
+          <h2 className="no-ava" style={{color: !dark && "black" }  }>Categoria vacia</h2>{" "}
         </div>
+      )}
 
-        {noProduct && <h2 className="no-ava">Categoria vacia</h2>}
-
-        <section className="products-container "> {map}</section>
-        <ToastContainer />
+      <section className="products-container">{map}</section>
+      <ToastContainer />
         {showCart && (
           <Cart
             cartItems={cart}
@@ -272,8 +269,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
             />{" "}
           </InfoModal>
         )}
-      </div>
-    </>
+    </div>
   );
 };
 
