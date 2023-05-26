@@ -44,7 +44,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
       ]);
       toast.success("Producto agregado al carrito", {
         position: "top-center",
-        autoClose: 1000,
+        autoClose: 400,
         theme: "colored",
       });
       setIsSelected(false);
@@ -54,7 +54,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
       setCart(updatedCart);
       toast.error("Producto eliminado del carrito", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 400,
         theme: "colored",
       });
       setIsSelected(true);
@@ -111,6 +111,12 @@ const ProdsPrices = ({ setProducto, producto }) => {
         console.log("Item deleted:", data);
         setProducto(producto.filter((item) => item.id !== id));
       })
+      toast.error("Producto eliminado", {
+        position:"top-center",
+        autoClose: 400,
+        theme: "colored",
+
+      })
       .catch((error) => {
         console.error("Error deleting item:", error);
       });
@@ -119,22 +125,22 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const handleCategory = (categoria) => {
     fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
-      .then((categorico) => {
-        if (categorico.length === 0) {
+      .then((data) => {
+        if (data.length === 0) {
           setNoProduct(true);
           setProducto([]);
           setOriginalProduct([]);
         } else {
           setNoProduct(false);
-          setProducto(categorico);
-          setOriginalProduct(categorico);
+          setProducto(data);
+          setOriginalProduct(data);
         }
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
+  
   const handleModal = (prod) => {
     setOpenModal(true);
     selectProd(prod);

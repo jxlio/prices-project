@@ -20,11 +20,12 @@ const Navbar = () => {
       >
         <img className="logoIndex" src={logo} alt="" height={120} width={210} />
         <nav>
-          {dark ? (
-            <MdDarkMode className="darkMode" onClick={toggleDarkMode} />
-          ) : (
-            <MdOutlineDarkMode className="darkMode" onClick={toggleDarkMode} />
-          )}
+             
+      {dark ? (
+        <MdDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "white" }} />
+      ) : (
+        <MdOutlineDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "black" }}  />
+      )}
 
           <Link to={"#distribuidoras"}>Sobre nosotros</Link>
           <Link>Como funcionamos</Link>

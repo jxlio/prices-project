@@ -11,14 +11,14 @@ import {AiOutlineHome, AiOutlineFileAdd} from "react-icons/ai"
 const Sidebar = ({ handleCates, handleInput, toggleCart, size }) => {
   const categorias = [
     { id: 0, nombre: "Todos", call: "" },
-    { id: 1, nombre: "Bebidas", call: "bebida" },
-    { id: 2, nombre: "Alimentos Basicos", call: "abasicos" },
-    { id: 3, nombre: "Mecatos", call: "mecato" },
-    { id: 4, nombre: "Lacteos y huevos", call: "lacteos" },
-    { id: 5, nombre: "Productos de limpieza", call: "aseo" },
-    { id: 6, nombre: "Aseo personal", call: "cuidadoperso" },
-    { id: 7, nombre: "Frutas", call: "fruta" },
-    { id: 8, nombre: "Carnes", call: "Carne" },
+    { id: 1, nombre: "Bebidas", call: "bebidas" },
+    { id: 2, nombre: "Alimentos Basicos", call: "Alimentos Basicos" },
+    { id: 3, nombre: "Mecatos", call: "Mecatos" },
+    { id: 4, nombre: "Lacteos y huevos", call: "Lacteos y huevos" },
+    { id: 5, nombre: "Productos de limpieza", call: "Productos de limpieza" },
+    { id: 6, nombre: "Aseo personal", call: "Aseo personal" },
+    { id: 7, nombre: "Frutas", call: "Frutas" },
+    { id: 8, nombre: "Carnes", call: "Carnes" },
   ];
 
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
@@ -77,20 +77,20 @@ const Sidebar = ({ handleCates, handleInput, toggleCart, size }) => {
 
         
       {dark ? (
-        <MdDarkMode className="darkMode" onClick={toggleDarkMode} />
+        <MdDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "white" }} />
       ) : (
-        <MdOutlineDarkMode className="darkMode" onClick={toggleDarkMode} />
+        <MdOutlineDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "black" }}  />
       )}
 
         <Tooltip title="Volver al inicio" arrow>
           <Link to={"/"} className="darkMode">
-           <AiOutlineHome/>
+           <AiOutlineHome style={{ color: dark && "white" }}/>
           </Link>
         </Tooltip>
 
         <Tooltip title="Agregar un producto" arrow>
           <Link to={"/add"} className="darkMode">
-          <AiOutlineFileAdd/>
+          <AiOutlineFileAdd style={{ color: dark && "white" }} />
           </Link>
         </Tooltip>
       </div>
