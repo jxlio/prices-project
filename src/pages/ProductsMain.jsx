@@ -11,18 +11,20 @@ import { DarkMode } from "../context/darkMode";
 import Sidebar from "../Components/Sidebar";
 
 const ProdsPrices = ({ setProducto, producto }) => {
+
+
   const [selectedProduct, setSelectedProduct] = useState();
   const [isSelected, setIsSelected] = useState(false);
   const [originalProduct, setOriginalProduct] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [noProduct, setNoProduct] = useState(false);
-
-  const [dark, setDark] = useContext(DarkMode);
-
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
 
-  const [navVisible, showNavbar] = useState(false);
+
+  const [dark, setDark] = useContext(DarkMode);
+
+  
 
   const ToggleCart = () => {
     setShowCart(!showCart);
@@ -222,7 +224,6 @@ const ProdsPrices = ({ setProducto, producto }) => {
     } else {
       formattedPrice = formattedPriceOlim;
     }
-    
 
     if (prod === selectedProduct) {
       return (
