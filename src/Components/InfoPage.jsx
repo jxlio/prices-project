@@ -5,9 +5,11 @@ const InfoPage = ({ selectedProduct, formatPrice }) => {
   }
 
   const priceD1 = parseFloat(selectedProduct.precio_d1);
-  const priceAra = parseFloat(selectedProduct.precio_ara);
+  const priceOlim = parseFloat(selectedProduct.precio_olim);
+  const priceExito= parseFloat(selectedProduct.precio_exito);
   const formattedPriceD1 = formatPrice(priceD1);
-  const formattedPriceAra = formatPrice(priceAra);
+  const formattedPriceOlim = formatPrice(priceOlim);
+  const formattedPriceExito = formatPrice(priceExito);
 
   return (
     <div className="info">
@@ -17,8 +19,8 @@ const InfoPage = ({ selectedProduct, formatPrice }) => {
       </section>
 
       <span>{` Precio D1:  ${formattedPriceD1}`} </span>
-      <span>{` Precio Ara:  ${formattedPriceAra}`} </span>
-
+      <span>{` Precio Olimpica:  ${formattedPriceOlim}`} </span>
+      <span>{` Precio Exito:  ${formattedPriceExito}`} </span>
     </div>
   );
 };

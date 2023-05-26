@@ -35,8 +35,9 @@ const ProdsPrices = ({ setProducto, producto }) => {
         ...cart,
         {
           name: prod.name,
-          precio_ara: prod.precio_ara,
           precio_d1: prod.precio_d1,
+          precio_olim: prod.precio_olim,
+          precio_exito: prod.precio_exito,
           img: prod.img1,
           quantity: 1,
           id: prod.id,
@@ -110,12 +111,12 @@ const ProdsPrices = ({ setProducto, producto }) => {
       .then((data) => {
         console.log("Item deleted:", data);
         setProducto(producto.filter((item) => item.id !== id));
-      })
-      toast.error("Producto eliminado", {
-        position:"top-center",
+      });
+    toast
+      .error("Producto eliminado", {
+        position: "top-center",
         autoClose: 400,
         theme: "colored",
-
       })
       .catch((error) => {
         console.error("Error deleting item:", error);
@@ -140,7 +141,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
         console.error(error);
       });
   };
-  
+
   const handleModal = (prod) => {
     setOpenModal(true);
     selectProd(prod);
@@ -206,13 +207,22 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   const map = producto.map((prod) => {
     const priceD1 = parseFloat(prod.precio_d1);
-    const priceAra = parseFloat(prod.precio_ara);
+    const priceOlim = parseFloat(prod.precio_olim);
+    const priceExito = parseFloat(prod.precio_exito);
     const formattedPriceD1 = formatPrice(priceD1);
-    const formattedPriceAra = formatPrice(priceAra);
-    const formattedPrice =
-      priceD1 > priceAra ? formattedPriceAra : formattedPriceD1;
-    const checkedInCart = itemInCard(prod);
-    console.log(checkedInCart);
+    const formattedPriceOlim = formatPrice(priceOlim);
+    const formattedPriceExito = formatPrice(priceExito);
+
+    let formattedPrice;
+
+    if (priceD1 > priceOlim && priceOlim > priceExito) {
+      formattedPrice = formattedPriceExito;
+    } else if (priceOlim > priceExito && priceExito > priceD1) {
+      formattedPrice = formattedPriceD1;
+    } else {
+      formattedPrice = formattedPriceOlim;
+    }
+    
 
     if (prod === selectedProduct) {
       return (
@@ -245,36 +255,43 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   return (
     <div className="main" style={{ backgroundColor: dark && "#202124 " }}>
-      <Sidebar handleCates={handleCategory} handleInput={handleChange} toggleCart={ToggleCart} size={cart.length} />
+      <Sidebar
+        handleCates={handleCategory}
+        handleInput={handleChange}
+        toggleCart={ToggleCart}
+        size={cart.length}
+      />
 
       {noProduct && (
         <div className="no-ava-cont">
           {" "}
-          <h2 className="no-ava" style={{color: !dark && "black" }  }>Categoria vacia</h2>{" "}
+          <h2 className="no-ava" style={{ color: !dark && "black" }}>
+            Categoria vacia
+          </h2>{" "}
         </div>
       )}
 
       <section className="products-container">{map}</section>
       <ToastContainer />
-        {showCart && (
-          <Cart
-            cartItems={cart}
-            setCartItems={setCart}
-            toggleCart={ToggleCart}
-            plus={AddQuant}
-            minus={minusQuant}
+      {showCart && (
+        <Cart
+          cartItems={cart}
+          setCartItems={setCart}
+          toggleCart={ToggleCart}
+          plus={AddQuant}
+          minus={minusQuant}
+          formatPrice={formatPrice}
+        />
+      )}
+      {openModal && (
+        <InfoModal close={CloseModal}>
+          {" "}
+          <InfoPage
+            selectedProduct={selectedProduct}
             formatPrice={formatPrice}
-          />
-        )}
-        {openModal && (
-          <InfoModal close={CloseModal}>
-            {" "}
-            <InfoPage
-              selectedProduct={selectedProduct}
-              formatPrice={formatPrice}
-            />{" "}
-          </InfoModal>
-        )}
+          />{" "}
+        </InfoModal>
+      )}
     </div>
   );
 };

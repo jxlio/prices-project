@@ -4,15 +4,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { DarkMode } from "../context/darkMode";
-import {BiArrowBack} from "react-icons/bi"
+import { BiArrowBack } from "react-icons/bi";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
 const FormAddProd = ({ producto, setProducto }) => {
   const [form, setForm] = useState({
     name: "",
     img1: "",
-    precio_ara: "",
     precio_d1: "",
+    precio_olim: "",
+    precio_exito: "",
     category: "",
   });
 
@@ -32,8 +33,9 @@ const FormAddProd = ({ producto, setProducto }) => {
     const fd = new FormData();
     fd.append("name", form.name);
     fd.append("img1", form.img1);
-    fd.append("precio_ara", form.precio_ara);
     fd.append("precio_d1", form.precio_d1);
+    fd.append("precio_olim", form.precio_olim);
+    fd.append("precio_exito", form.precio_exito);
     fd.append("category", form.category);
 
     fetch("http://localhost/products/index.php", {
@@ -71,20 +73,28 @@ const FormAddProd = ({ producto, setProducto }) => {
       <div className="atras-cont" title="Volver">
         <Link to={"/products"} className="atras">
           {" "}
-        <BiArrowBack/>
+          <BiArrowBack />
         </Link>
-             
-      {dark ? (
-        <MdDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "white" }} />
-      ) : (
-        <MdOutlineDarkMode className="darkMode" onClick={toggleDarkMode} style={{ color: dark && "black" }}  />
-      )}
+
+        {dark ? (
+          <MdDarkMode
+            className="darkMode"
+            onClick={toggleDarkMode}
+            style={{ color: dark && "white" }}
+          />
+        ) : (
+          <MdOutlineDarkMode
+            className="darkMode"
+            onClick={toggleDarkMode}
+            style={{ color: dark && "black" }}
+          />
+        )}
       </div>
 
       <form className="formAdd" onSubmit={handleSubmit}>
         <ToastContainer />
 
-        <p  style={{ color: dark && "white" }}>Agregar producto</p>
+        <p style={{ color: dark && "white" }}>Agregar producto</p>
 
         <label htmlFor="name">
           {" "}
@@ -95,19 +105,25 @@ const FormAddProd = ({ producto, setProducto }) => {
             value={form.name}
             onChange={handleChange}
             required
-            style={{ backgroundColor: dark && "#303134", color: dark && "white" }}            
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
           />
         </label>
 
         <label htmlFor="category">
           {" "}
           Categoría{" "}
-          <select 
+          <select
             name="category"
             id="category"
             value={form.category}
             onChange={handleChange}
-            style={{ backgroundColor: dark && "#303134", color: dark && "white" }}   
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
           >
             <option value="">Selecciona una categoria</option>
             <option value="1">Bebidas</option>
@@ -129,32 +145,57 @@ const FormAddProd = ({ producto, setProducto }) => {
             value={form.img1}
             onChange={handleChange}
             required
-            style={{ backgroundColor: dark && "#303134", color: dark && "white" }}      
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
           />
         </label>
 
-        <label htmlFor="precio_ara">
+        <label htmlFor="precio_olim">
           {" "}
-          Precio D1
+          Precio Olimpica
           <input
             type="number"
-            name="precio_ara"
-            value={form.precio_ara}
+            name="precio_olim"
+            value={form.precio_olim}
             onChange={handleChange}
             required
-            style={{ backgroundColor: dark && "#303134", color: dark && "white" }}   
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
+          />
+        </label>
+
+        <label htmlFor="precio_exito">
+          {" "}
+          Precio Exito
+          <input
+            type="number"
+            name="precio_exito"
+            value={form.precio_exito}
+            onChange={handleChange}
+            required
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
           />
         </label>
 
         <label htmlFor="precio_d1">
-          Precio ARA
+          Precio D1
           <input
             type="number"
             name="precio_d1"
             value={form.precio_d1}
             onChange={handleChange}
             required
-            style={{ backgroundColor: dark && "#303134", color: dark && "white" }}   
+            style={{
+              backgroundColor: dark && "#303134",
+              color: dark && "white",
+            }}
           />
         </label>
 

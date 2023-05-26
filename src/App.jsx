@@ -10,19 +10,19 @@ function App() {
 
   return (
     <DarkModeFunction>
-    <Routes>
-     
-      <Route path="/" element={<Index />} />
-      <Route
-        path="/products"
-        element={<ProductsMain setProducto={setProducto} producto={producto} />}
-      />
-      <Route
-        path="/add"
-        element={<AddProduct producto={producto} setProducto={setProducto} />}
-      />
-    
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route
+          path="/products"
+          element={
+            <ProductsMain setProducto={setProducto} producto={producto} />
+          }
+        />
+        <Route
+          path="/add"
+          element={<AddProduct producto={producto} setProducto={setProducto} />}
+        />
+      </Routes>
     </DarkModeFunction>
   );
 }

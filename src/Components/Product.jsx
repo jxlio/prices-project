@@ -12,23 +12,22 @@ const Product = ({
   precio,
   addTo,
   cart,
- 
 }) => {
-
-  const [dark, setDark, toggleDarkMode] = useContext(DarkMode)
+  const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
   return (
-    <div className={`cont-pro ${isSelected ? "selected" : ""}`} style={{ backgroundColor: dark && "#303134 " }} >
+    <div
+      className={`cont-pro ${isSelected ? "selected" : ""}`}
+      style={{ backgroundColor: dark && "#303134 " }}
+    >
       <button className="delete" onClick={del}>
         <i className="fa-solid fa-trash-can"></i>
       </button>
 
       {cart ? (
-        <Tooltip title="Producto ya en el carrito" arrow >
+        <Tooltip title="Producto ya en el carrito" arrow>
           <button className="addToCart inCart" onClick={addTo}>
             <BsCartCheckFill />{" "}
           </button>
-
-
         </Tooltip>
       ) : (
         <Tooltip title="Agregar producto al carrito" arrow>
@@ -40,7 +39,7 @@ const Product = ({
 
       <div className="contenido" onClick={modalFn}>
         <img src={img} alt="" />
-        <h4 style={{color: !dark && "black" }  }> {name} </h4>
+        <h4 style={{ color: !dark && "black" }}> {name} </h4>
         <span className="mas-barato">{precio}</span>
       </div>
     </div>
