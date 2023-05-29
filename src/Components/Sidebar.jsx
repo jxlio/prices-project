@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
 import { TbMeat, TbPaperBag } from "react-icons/tb";
 
-const Sidebar = ({ handleCates, handleInput, toggleCart, size }) => {
+const Sidebar = ({ handleCates, handleInput, toggleCart, size, filtrarPrecios, filtrarPreciosD1, filtrarPreciosExito, filtrarD1, filtrarExito, filtrarOlimpica }) => {
   const categorias = [
     { id: 0, nombre: "Todos", call: "", icon: <i class="fa-solid fa-list"></i>},
     { id: 1, nombre: "Bebidas", call: "bebidas", icon: <i class="fa-solid fa-champagne-glasses"></i> },
@@ -41,20 +41,37 @@ const Sidebar = ({ handleCates, handleInput, toggleCart, size }) => {
           type="search"
           placeholder="Busca un producto"
           onChange={handleInput}
-          style={{ backgroundColor: dark && "#303134" }}
+          style={{ backgroundColor: dark && "#303134", color: !dark && "black" }}
         />
       </div>
 
       <div className="cart">
-        <span onClick={toggleCart}>
+        <span >
           {" "}
-          <FiShoppingCart
+          <FiShoppingCart 
+          onClick={toggleCart}
             style={{ color: dark && "white" }}
             className="cart-icon"
           >
             {" "}
           </FiShoppingCart>{" "}
           <strong style={{ color: dark && "white" }}>{size} </strong>
+        
+       
+
+        <Tooltip title="Volver al inicio" arrow>
+          <Link to={"/"} className="darkMode">
+            <AiOutlineHome style={{ color: dark && "white" }} />
+          </Link>
+        </Tooltip>
+
+        <Tooltip title="Agregar un producto" arrow>
+          <Link to={"/add"} className="darkMode">
+            <AiOutlineFileAdd style={{ color: dark && "white" }} />
+          </Link>
+        </Tooltip>
+   
+         
         </span>
       </div>
       <h2 style={{ color: dark && "white" }}>Categorias</h2>
@@ -72,35 +89,14 @@ const Sidebar = ({ handleCates, handleInput, toggleCart, size }) => {
             </span>
           );
         })}
+
+        <span onClick={filtrarD1}>Ver productos D1</span>
+        <span onClick={filtrarExito}>Ver productos Exito</span>
+        <span onClick={filtrarOlimpica}>Ver productos Olimpica</span>
+
       </div>
 
-      <div className="home-container">
-        {dark ? (
-          <MdDarkMode
-            className="darkMode"
-            onClick={toggleDarkMode}
-            style={{ color: dark && "white" }}
-          />
-        ) : (
-          <MdOutlineDarkMode
-            className="darkMode"
-            onClick={toggleDarkMode}
-            style={{ color: dark && "black" }}
-          />
-        )}
-
-        <Tooltip title="Volver al inicio" arrow>
-          <Link to={"/"} className="darkMode">
-            <AiOutlineHome style={{ color: dark && "white" }} />
-          </Link>
-        </Tooltip>
-
-        <Tooltip title="Agregar un producto" arrow>
-          <Link to={"/add"} className="darkMode">
-            <AiOutlineFileAdd style={{ color: dark && "white" }} />
-          </Link>
-        </Tooltip>
-      </div>
+     
     </div>
   );
 };

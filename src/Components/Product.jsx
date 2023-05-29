@@ -12,6 +12,8 @@ const Product = ({
   precio,
   addTo,
   cart,
+  precio_olim,
+  precio_exito
 }) => {
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
   return (
@@ -38,9 +40,11 @@ const Product = ({
       )}
 
       <div className="contenido" onClick={modalFn}>
-        <img src={img} alt="" />
+        <img loading="lazy" className="img-main" src={img} alt="" />
         <h4 style={{ color: !dark && "black" }}> {name} </h4>
-        <span className="mas-barato">{precio}</span>
+        <p className="mas-barato">{precio}</p>
+        <p className="mas-barato">{precio_exito}</p>
+        <p className="mas-barato">{precio_olim}</p>
       </div>
     </div>
   );

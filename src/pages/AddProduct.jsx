@@ -7,15 +7,21 @@ import { DarkMode } from "../context/darkMode";
 import { BiArrowBack } from "react-icons/bi";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
+
+/* El formulario de esta pagina lo controlo usando un estado el cual tiene el valor de cada uno de esos inputs como strings vacios,
+utilizo el nombre exacto q tiene cada input para luego asignar el valor escrito por el usuario mas facil */
+
 const FormAddProd = ({ producto, setProducto }) => {
   const [form, setForm] = useState({
     name: "",
     img1: "",
-    precio_d1: "",
+    category: "",
     precio_olim: "",
     precio_exito: "",
-    category: "",
+    precio_d1: "",
   });
+
+  /* en este handleChange tomo el valor escrito en cada input y se lo asigno a la key correspondiente del estado usando el nombre [name]: value */
 
   function handleChange(event) {
     const { value, name } = event.target;
@@ -23,9 +29,15 @@ const FormAddProd = ({ producto, setProducto }) => {
       ...prevForm,
       [name]: value,
     }));
+    console.log(form);
   }
 
+  /*Esto es una variable global para controlar el modo oscuro */
+
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
+
+  /* Este handleSubmit es la funcion que se ejecuta cuando se envia el formulario, basicamente todo cada valor de los inputs y
+  se los agrego a un formData, luego ese formData lo paso en el POST como body, para asi agregar los productos*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,10 +45,10 @@ const FormAddProd = ({ producto, setProducto }) => {
     const fd = new FormData();
     fd.append("name", form.name);
     fd.append("img1", form.img1);
-    fd.append("precio_d1", form.precio_d1);
+    fd.append("category", form.category);
     fd.append("precio_olim", form.precio_olim);
     fd.append("precio_exito", form.precio_exito);
-    fd.append("category", form.category);
+    fd.append("precio_d1", form.precio_d1);
 
     fetch("http://localhost/products/index.php", {
       method: "POST",
@@ -50,7 +62,8 @@ const FormAddProd = ({ producto, setProducto }) => {
           category: "",
           description: "",
           img1: "",
-          precio_ara: "",
+          precio_olim: "",
+          precio_exito: "",
           precio_d1: "",
         });
         toast.success("Producto agregado con éxito", {
@@ -125,6 +138,8 @@ const FormAddProd = ({ producto, setProducto }) => {
               color: dark && "white",
             }}
           >
+
+            {/* En estos option utilizo de value esos numero ya que son los que le corresponden a cada categoria en la BD */}
             <option value="">Selecciona una categoria</option>
             <option value="1">Bebidas</option>
             <option value="2">Alimentos Básicos</option>
@@ -160,7 +175,6 @@ const FormAddProd = ({ producto, setProducto }) => {
             name="precio_olim"
             value={form.precio_olim}
             onChange={handleChange}
-            required
             style={{
               backgroundColor: dark && "#303134",
               color: dark && "white",
@@ -176,7 +190,6 @@ const FormAddProd = ({ producto, setProducto }) => {
             name="precio_exito"
             value={form.precio_exito}
             onChange={handleChange}
-            required
             style={{
               backgroundColor: dark && "#303134",
               color: dark && "white",
@@ -191,7 +204,6 @@ const FormAddProd = ({ producto, setProducto }) => {
             name="precio_d1"
             value={form.precio_d1}
             onChange={handleChange}
-            required
             style={{
               backgroundColor: dark && "#303134",
               color: dark && "white",

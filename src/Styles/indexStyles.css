@@ -34,7 +34,7 @@
 
 .container {
   max-width: 1400px;
-  background-color: #fffcf7;
+  background-color: #333;
 }
 
 header {
@@ -178,14 +178,55 @@ header a:hover {
   transform: scale(1.05);
 }
 
-footer {
-  background-color: rgb(245, 245, 245);
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
 }
 
-footer p {
-  margin: 0;
-  font-size: 1rem;
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.footer-logo img {
+  width: 150px;
+  height: auto;
+}
+
+.footer-nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-social .social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer-social .social-icons li a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+}
+
 
 .footer .footer-container {
   height: 140px;
@@ -267,7 +308,12 @@ footer p {
     padding: 120px;
   }
 
-  footer .footer-container {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-nav {
+    margin-top: 20px;
     text-align: center;
   }
 }

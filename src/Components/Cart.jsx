@@ -7,10 +7,17 @@ const Cart = ({
   plus,
   minus,
   formatPrice,
+
+  /* Esta funcion elimina un producto del carrito a traves de su id, se le pasa el id del producto a la funcion y filtra dejando todos los items 
+  con un id diferente al que se paso, es decir dejando todos los productos menos ese xd*/
 }) => {
   const handleRemoveItem = (index) => {
     setCartItems(cartItems.filter((item, i) => i !== index));
   };
+
+  /* Ëstas funciones basicamente suman los valores totales para cada distribuidora en el carrito, se utiliza el metodo educe de js.
+  Basicamente tiene una funcion de argumento que toma dos argumentos mas, donde el primero es el acumulador y el segundo el actual
+  */
 
   const montoTotalD1 = formatPrice(
     cartItems.reduce((total, item) => total + item.precio_d1 * item.quantity, 0)
@@ -30,7 +37,7 @@ const Cart = ({
     )
   );
 
-
+  /* Estilos, y renderizacion condicional, poco mas*/
 
   return (
     <div className="back-modal">
@@ -45,7 +52,7 @@ const Cart = ({
             <img src={item.img} alt="" />
             <div className="cart-item-details">
               <p className="cart-item-name">{item.name}</p>
-             
+
               <p className="cart-item-price">
                 <strong>Precio D1: </strong>
                 {formatPrice(item.precio_d1 * item.quantity)}
@@ -53,14 +60,13 @@ const Cart = ({
 
               <p className="cart-item-price">
                 <strong>Precio Olimpica: </strong>
-                {formatPrice(item.precio_olim* item.quantity)}
+                {formatPrice(item.precio_olim * item.quantity)}
               </p>
-              
+
               <p className="cart-item-price">
                 <strong>Precio Exito: </strong>
                 {formatPrice(item.precio_exito * item.quantity)}
               </p>
-
 
               <div className="cart-item-quantity">
                 <strong className="cart-item-quantity-label">Cantidad:</strong>
@@ -76,7 +82,6 @@ const Cart = ({
         ))}
         {cartItems.length > 0 && (
           <div className="totals">
-           
             <p>Monto Total D1: {montoTotalD1} </p>
             <p>Monto Total ARA: {montoTotalOlim} </p>
             <p>Monto Total ARA: {montoTotalExito} </p>
