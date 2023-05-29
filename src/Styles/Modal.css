@@ -9,33 +9,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto; 
 }
 
 .modal-container {
-  width: 500px;
-  height: 520px;
+  width: 90%;
+  max-width: 800px;
+  height: 100vh;
+  overflow-y: auto;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 25px;
   position: relative;
   z-index: 1000;
 }
 
-.modal-container button {
-  width: 30px;
-  height: 35px;
+.modal-container .delt {
+  width: 27px;
+  height: 48px;
   color: black;
   background-color: #e74c3c;
   align-self: flex-end;
-  border-radius: 20%;
+  border-radius: 12%; 
+  justify-content: center;
+  align-items: center;
 }
 
-.modal-container button:hover {
+.modal-container .delt:hover {
   background-color: darkred;
   cursor: pointer;
 }

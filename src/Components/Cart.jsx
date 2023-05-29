@@ -53,20 +53,20 @@ const Cart = ({
             <div className="cart-item-details">
               <p className="cart-item-name">{item.name}</p>
 
-              <p className="cart-item-price">
+              {item.precio_d1 > 0 &&  <p className="cart-item-price">
                 <strong>Precio D1: </strong>
                 {formatPrice(item.precio_d1 * item.quantity)}
-              </p>
+              </p>}
 
-              <p className="cart-item-price">
-                <strong>Precio Olimpica: </strong>
+              {item.precio_olim > 0 &&  <p className="cart-item-price">
+                <strong>Precio Olimpica </strong>
                 {formatPrice(item.precio_olim * item.quantity)}
-              </p>
+              </p>}
 
-              <p className="cart-item-price">
+            {item.precio_exito > 0 &&  <p className="cart-item-price">
                 <strong>Precio Exito: </strong>
                 {formatPrice(item.precio_exito * item.quantity)}
-              </p>
+              </p>}
 
               <div className="cart-item-quantity">
                 <strong className="cart-item-quantity-label">Cantidad:</strong>
@@ -82,7 +82,8 @@ const Cart = ({
         ))}
         {cartItems.length > 0 && (
           <div className="totals">
-            <p>Monto Total D1: {montoTotalD1} </p>
+
+            <p>  Monto Total D1: {montoTotalD1} </p>
             <p>Monto Total ARA: {montoTotalOlim} </p>
             <p>Monto Total ARA: {montoTotalExito} </p>
           </div>

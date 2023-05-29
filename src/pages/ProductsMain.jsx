@@ -19,6 +19,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
+  const [productosOrdenados, setProductosOrdenados] = useState([]);
 
   /* UseEffect para cargar todos los productos de la BD una vez la pagina carga */
 
@@ -54,7 +55,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   /* Funcion para filtrar los productos por categorias, trayendo los productos de la BD que tengan la categoria pasada en el fetch  */
 
-  const handleCategory = (categoria) => {
+  const handleCategory = (categoria, distribuidora) => {
     fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
       .then((data) => {
@@ -66,6 +67,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
           setNoProduct(false);
           setProducto(data);
           setOriginalProduct(data);
+          ordenarPorPrecio(distribuidora);
         }
       })
       .catch((error) => {
@@ -100,6 +102,13 @@ const ProdsPrices = ({ setProducto, producto }) => {
           .includes(busqueda.toLowerCase())
     );
     setProducto(result);
+  };
+
+
+  const ordenarPorPrecioD1Ascendente = (distri) => {
+    const productosOrdenados = [...producto].sort(
+      (a, b) => a.precio_d1 - b.precio_d1)
+    setProducto(productosOrdenados);
   };
 
   /* Funcion para carrito de compras: primero revisa si el producto que se quiere agregar ya esta en el carrito, en caso de que no
@@ -223,6 +232,8 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
       return prod.precio_d1 > 0;
     });
     setProducto(filteredD1);
+    ordenarPorPrecioD1Ascendente()
+    
   };
   const filtrarExito = () => {
     const filteredD1 = [...originalProduct].filter((prod) => {
@@ -239,6 +250,8 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
 
   /* Este map es el encargado de mostrar o renderizar todos los productos que traigo de la BD */
 
+ 
+
   const map = producto.map((prod) => {
     const priceD1 = parseFloat(prod.precio_d1);
     const priceOlim = parseFloat(prod.precio_olim);
@@ -249,44 +262,43 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
 
     /* esto era para mostrar el precio mas bajo en la tarjeta del producto */
 
-    let formattedPrice;
-
-    if (priceD1 > priceOlim && priceOlim > priceExito) {
-      formattedPrice = formattedPriceExito;
-    } else if (priceOlim > priceExito && priceExito > priceD1) {
-      formattedPrice = formattedPriceD1;
-    } else {
-      formattedPrice = formattedPriceOlim;
-    }
-
     /* Esto es para verificar si un producto tiene al menos dos precios, es decir esta en 2 o mas distribuidoras */
-
 
     if (prod === selectedProduct) {
       return (
         <Product
           isSelected={isSelected}
           name={prod.name}
-          precio={`Mas barato: ${formattedPrice}`}
+          precio={` ${priceD1}`}
+          precio_exito={priceExito}
+          precio_olim={priceOlim}
           img={prod.img1}
           key={prod.id}
           modalFn={() => handleModal(prod)}
           del={() => handleDelete(prod.id)}
           addTo={() => handleCart(prod)}
           cart={itemInCard(prod)}
+          formattedPriceD1={formattedPriceD1}
+          formattedPriceOlim={formattedPriceOlim}
+          formattedPriceExito={formattedPriceExito}
         />
       );
     }
     return (
       <Product
         name={prod.name}
-        precio={`Mas barato: ${formattedPrice}`}
+        precio={` ${priceD1}`}
+        precio_exito={priceExito}
+        precio_olim={priceOlim}
         img={prod.img1}
         key={prod.id}
         modalFn={() => handleModal(prod)}
         del={() => handleDelete(prod.id)}
         addTo={() => handleCart(prod)}
         cart={itemInCard(prod)}
+        formattedPriceD1={formattedPriceD1}
+        formattedPriceOlim={formattedPriceOlim}
+        formattedPriceExito={formattedPriceExito}
       />
     );
   });
@@ -304,7 +316,10 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
         filtrarD1={filtrarD1}
         filtrarExito={filtrarExito}
         filtrarOlimpica={filtrarOlimpica}
+        orderD1={ordenarPorPrecioD1Ascendente}
       />
+      
+      
 
       {noProduct && (
         <div className="no-ava-cont">
@@ -315,8 +330,7 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
         </div>
       )}
 
-      <div className="products-container"> {map}
-      </div>
+      <div className="products-container"> {map}</div>
 
       <ToastContainer />
       {showCart && (
@@ -334,12 +348,13 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
         <InfoModal close={CloseModal}>
           {" "}
           <InfoPage
+            addTo={handleCart}
+            productos={producto}
             selectedProduct={selectedProduct}
             formatPrice={formatPrice}
           />{" "}
         </InfoModal>
       )}
-      
     </div>
   );
 };
