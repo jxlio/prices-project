@@ -69,7 +69,7 @@ const Sidebar = ({
       className="sidebar"
       style={{ backgroundColor: dark && "#202124", color: dark && "white" }}
     >
-      <img src={logo} alt="" height={90} />
+     <Link to={"/"}><img src={logo} alt="" height={90} /> </Link> 
       <div className="input-container">
         <input
           type="search"
@@ -120,8 +120,6 @@ const Sidebar = ({
             </span>
           );
         })}
-
-        
       </div>
     </div>
   );

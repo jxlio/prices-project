@@ -8,6 +8,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { color } from "@mui/system";
 const Navbar = () => {
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
+  
 
   return (
     <header>
@@ -34,8 +35,9 @@ const Navbar = () => {
             />
           )}
 
-          <Link to={"#distribuidoras"}>Sobre nosotros</Link>
-          <Link>Como funcionamos</Link>
+         
+          <a href="#somos">Como funcionamos</a>
+          <a href="#compara">Sobre nosotros</a>
         </nav>
       </div>
     </header>

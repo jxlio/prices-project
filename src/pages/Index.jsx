@@ -1,15 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../Styles/indexStyles.css";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { DarkMode } from "../context/darkMode";
 import { Typewriter } from "react-simple-typewriter";
+import logo from "../assets/shoping logo.1je.png"
 
 const Index = () => {
   const [dark] = useContext(DarkMode);
+  const [imageClass, setImageClass] = useState('img-cont2');
+
 
   /* Pagina principal, full stilos, nada importante realmente*/
+
+  const changeImage = (action) => {
+    if (action === 'antes') {
+      setImageClass('img-cont2');
+    } else if (action === 'next') {
+      setImageClass('img-cont3');
+    } else if (action === 'otra') {
+      setImageClass('img-cont4');
+    }
+  };
 
   return (
     <div className="container">
@@ -48,28 +61,36 @@ const Index = () => {
         className="somos-compara"
         style={{ backgroundColor: dark ? "#202124" : "white" }}
       >
-        <section className="container-somos">
+        <section className="container-somos" id="compara">
           <div className="img-cont"></div>
           <div className="texto">
             <h2 className="h2">Somos Compara!</h2>
             <p className="p">
               Esta web fue creada por un grupo de estudiantes para facilitar el
-              acceso a las compras en toda la region del Caribe sucreño{" "}
+              acceso a las compras en la ciudad de Sincelejo!{" "}
             </p>
           </div>
         </section>
       </section>
 
       <section
+      id="somos"
         className="somos-compara"
         style={{ backgroundColor: dark ? "#202124" : "white" }}
       >
         <section className="container-somos">
+        <div className="img-cont2">
+        <div className={imageClass}>
+      <button className="slider-dots"  onClick={() => changeImage('antes')}></button>
+      <button className="slider-dots"  onClick={() => changeImage('next')}></button>
+      <button className="slider-dots"  onClick={() => changeImage('otra')}></button>
+    </div>
+        </div>
           <div className="texto">
             <h2 className="h2">¿Como Funcionamos?</h2>
             <p className="p">
-              Esta web fue creada por un grupo de estudiantes para facilitar el
-              acceso a las compras en toda la region del Caribe sucreño{" "}
+              Con ayuda del webscraping somos capaces de obtener informacion sobre productos en distintas distribuidoras
+              para luego agregar esa informacion en nuestra base de datos utilizando operaciones SQL, luego renderizamos los productos y mostramos similares con ayuda del framework React JS para la{" "}
             </p>
           </div>
         </section>
