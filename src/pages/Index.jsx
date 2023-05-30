@@ -1,14 +1,10 @@
 import React, { useContext } from "react";
-
 import "../Styles/indexStyles.css";
-
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-import CartaDistri from "../Components/cartaDistri";
 import Footer from "../Components/Footer";
 import { DarkMode } from "../context/darkMode";
-import { Typewriter } from 'react-simple-typewriter'
-
+import { Typewriter } from "react-simple-typewriter";
 
 const Index = () => {
   const [dark] = useContext(DarkMode);
@@ -23,15 +19,18 @@ const Index = () => {
         style={{ backgroundColor: dark ? "#202124" : "white" }}
       >
         <h1 className="h1">
-        <Typewriter
-            words={['¿Quieres saber los mejores precios de la ciudad de Sincelejo?', 'Entra y Compara!', 'Ahorra!']}
+          <Typewriter
+            words={[
+              "¿Quieres saber los mejores precios de la ciudad de Sincelejo?",
+              "Entra y Compara!",
+              "Ahorra!",
+            ]}
             loop={true}
             cursor
-            cursorStyle='_'
+            cursorStyle="_"
             typeSpeed={80}
             deleteSpeed={80}
             delaySpeed={1000}
-            
           />
         </h1>
         <p className="p" style={{ color: dark && "white" }}>
@@ -66,7 +65,6 @@ const Index = () => {
         style={{ backgroundColor: dark ? "#202124" : "white" }}
       >
         <section className="container-somos">
-          
           <div className="texto">
             <h2 className="h2">¿Como Funcionamos?</h2>
             <p className="p">
