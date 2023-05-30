@@ -20,6 +20,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
   const [showCart, setShowCart] = useState(false);
   const [dark, setDark, toggleDarkMode] = useContext(DarkMode);
   const [productosOrdenados, setProductosOrdenados] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   /* UseEffect para cargar todos los productos de la BD una vez la pagina carga */
 
@@ -55,7 +56,7 @@ const ProdsPrices = ({ setProducto, producto }) => {
 
   /* Funcion para filtrar los productos por categorias, trayendo los productos de la BD que tengan la categoria pasada en el fetch  */
 
-  const handleCategory = (categoria, distribuidora) => {
+  const handleCategory = (categoria) => {
     fetch(`http://localhost/products/index.php?category=${categoria}`)
       .then((response) => response.json())
       .then((data) => {
@@ -67,7 +68,8 @@ const ProdsPrices = ({ setProducto, producto }) => {
           setNoProduct(false);
           setProducto(data);
           setOriginalProduct(data);
-          ordenarPorPrecio(distribuidora);
+          setCurrentPage(1)
+          
         }
       })
       .catch((error) => {
@@ -104,10 +106,10 @@ const ProdsPrices = ({ setProducto, producto }) => {
     setProducto(result);
   };
 
-
   const ordenarPorPrecioD1Ascendente = (distri) => {
     const productosOrdenados = [...producto].sort(
-      (a, b) => a.precio_d1 - b.precio_d1)
+      (a, b) => a.precio_d1 - b.precio_d1
+    );
     setProducto(productosOrdenados);
   };
 
@@ -232,8 +234,7 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
       return prod.precio_d1 > 0;
     });
     setProducto(filteredD1);
-    ordenarPorPrecioD1Ascendente()
-    
+    ordenarPorPrecioD1Ascendente();
   };
   const filtrarExito = () => {
     const filteredD1 = [...originalProduct].filter((prod) => {
@@ -250,9 +251,19 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
 
   /* Este map es el encargado de mostrar o renderizar todos los productos que traigo de la BD */
 
- 
+  // Número de elementos por página
+  const itemsPerPage = 10;
 
-  const map = producto.map((prod) => {
+  // Calcular el índice inicial y final de la página actual
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  // Obtener los elementos de la página actual utilizando splice
+  const pageItems = producto.slice(startIndex, endIndex);
+
+  // Mapear los elementos de la página actual
+
+  const map = pageItems.map((prod) => {
     const priceD1 = parseFloat(prod.precio_d1);
     const priceOlim = parseFloat(prod.precio_olim);
     const priceExito = parseFloat(prod.precio_exito);
@@ -304,58 +315,79 @@ la use para hacer una renderizacion condicional para el icono del carrito (si ya
   });
 
   return (
+    <div>
+    
     <div className="main" style={{ backgroundColor: dark && "#202124 " }}>
-      <Sidebar
-        handleCates={handleCategory}
-        handleInput={handleChange}
+    <Sidebar
+      handleCates={handleCategory}
+      handleInput={handleChange}
+      toggleCart={ToggleCart}
+      size={cart.length}
+      filtrarPrecios={() => filtrarPrecios(producto)}
+      filtrarPreciosExito={() => filtrarPreciosExito(producto)}
+      filtrarPreciosD1={() => filtrarPreciosD1(producto)}
+      filtrarD1={filtrarD1}
+      filtrarExito={filtrarExito}
+      filtrarOlimpica={filtrarOlimpica}
+      orderD1={ordenarPorPrecioD1Ascendente}
+    />
+  
+    {noProduct && (
+      <div className="no-ava-cont">
+        <h2 className="no-ava" style={{ color: !dark && "black" }}>
+          Categoria vacia
+        </h2>
+      </div>
+    )}
+  
+    <div className="products-container">{map}</div>
+  
+    <ToastContainer />
+    {showCart && (
+      <Cart
+        cartItems={cart}
+        setCartItems={setCart}
         toggleCart={ToggleCart}
-        size={cart.length}
-        filtrarPrecios={() => filtrarPrecios(producto)}
-        filtrarPreciosExito={() => filtrarPreciosExito(producto)}
-        filtrarPreciosD1={() => filtrarPreciosD1(producto)}
-        filtrarD1={filtrarD1}
-        filtrarExito={filtrarExito}
-        filtrarOlimpica={filtrarOlimpica}
-        orderD1={ordenarPorPrecioD1Ascendente}
+        plus={AddQuant}
+        minus={minusQuant}
+        formatPrice={formatPrice}
       />
-      
-      
-
-      {noProduct && (
-        <div className="no-ava-cont">
-          {" "}
-          <h2 className="no-ava" style={{ color: !dark && "black" }}>
-            Categoria vacia
-          </h2>{" "}
-        </div>
-      )}
-
-      <div className="products-container"> {map}</div>
-
-      <ToastContainer />
-      {showCart && (
-        <Cart
-          cartItems={cart}
-          setCartItems={setCart}
-          toggleCart={ToggleCart}
-          plus={AddQuant}
-          minus={minusQuant}
+    )}
+  
+    {openModal && (
+      <InfoModal close={CloseModal}>
+        <InfoPage
+          addTo={handleCart}
+          productos={producto}
+          selectedProduct={selectedProduct}
           formatPrice={formatPrice}
         />
-      )}
+      </InfoModal>
+    )}
+  
+   
+  </div>
 
-      {openModal && (
-        <InfoModal close={CloseModal}>
-          {" "}
-          <InfoPage
-            addTo={handleCart}
-            productos={producto}
-            selectedProduct={selectedProduct}
-            formatPrice={formatPrice}
-          />{" "}
-        </InfoModal>
-      )}
-    </div>
+  <div className="pagination-container">
+      <button
+      className="previous-button"
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Anterior
+        </button>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={endIndex >= producto.length}
+          className="next-button"
+        >
+          Siguiente
+        </button>
+      </div>
+
+  
+  </div>
+  
   );
 };
 

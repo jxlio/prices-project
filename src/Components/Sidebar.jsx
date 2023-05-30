@@ -121,9 +121,7 @@ const Sidebar = ({
           );
         })}
 
-        <span onClick={filtrarD1}>Ver productos D1</span>
-        <span onClick={filtrarExito}>Ver productos Exito</span>
-        <span onClick={filtrarOlimpica}>Ver productos Olimpica</span>
+        
       </div>
     </div>
   );

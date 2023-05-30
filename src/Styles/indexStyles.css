@@ -30,6 +30,7 @@
   border-radius: 20px;
   color: #e4e1e7;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  
 }
 
 .container {
@@ -226,7 +227,6 @@ header a:hover {
 .footer-bottom p {
   font-size: 14px;
 }
-
 
 .footer .footer-container {
   height: 140px;
